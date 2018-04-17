@@ -10,6 +10,8 @@ import string
 nltk.download('stopwords')
 nltk.download('punkt')
 
+# clean and tokenize the document
+
 
 def clean_tokenize(data):
     text = []
@@ -30,13 +32,15 @@ def clean_tokenize(data):
         words = []
     return words
 
+# save as JSON file
+
 
 def writeToJSONFile(path, fileName, data):
     filePathNameWExt = './' + path + '/' + fileName + '.json'
     with open(filePathNameWExt, 'w') as fp:
         json.dump(data, fp)
 
-# DEAL WITH TIME
+# DEAL WITH TIME format
 
 
 def convert_time(date):
@@ -47,6 +51,7 @@ def convert_time(date):
     return datetime_object.strftime('%Y%m%d')
 
 
+# main function to run
 for file_name in glob.glob('*.json'):
     config = json.loads(open(file_name).read())
     for key, value in config.items():
@@ -57,7 +62,6 @@ for file_name in glob.glob('*.json'):
         except:
             config[key]['Content'] = []
 
-        # print(key)
     # save file:
     writeToJSONFile('./', file_name + '_tokenized', config)
     print('One work done!')

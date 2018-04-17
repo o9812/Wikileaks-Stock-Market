@@ -18,10 +18,18 @@ which is contributed to DSGA 1012 NLU
 
 
 def vector_length(u):
+    '''
+    input: one vector, numpy array
+    output: the length of the array
+    '''
     return (np.sum(u**2))**(1 / 2)
 
 
 def cosine(u, v):
+    '''
+    input: two vecors, numpy array
+    output: the length of the array
+    '''
     return 1 - (np.dot(u, v)) / (vector_length(u) * vector_length(v))
 
 
@@ -40,22 +48,6 @@ def wrd2vector(word, mat, rownames):
     rownames : list of str
         The rownames of mat.
 
-    distfunc : function mapping vector pairs to floats (default: `cosine`)
-        The measure of distance between vectors. Can also be `euclidean`,
-        `matching`, `jaccard`, as well as any other distance measure
-        between 1d vectors.
-
-    Raises
-    ------
-    ValueError
-        If word is not in rownames.
-
-    Returns
-    -------
-    list of tuples
-        The list is ordered by closeness to `word`. Each member is a pair
-        (word, distance) where word is a str and distance is a float.
-
     """
     try:
         w = mat[rownames.index(word)]
@@ -64,14 +56,16 @@ def wrd2vector(word, mat, rownames):
        # print('%s is not in the glove' % word)
         return False
 
+
 def writeToJSONFile(path, fileName, data):
     filePathNameWExt = './' + path + '/' + fileName + '.json'
     with open(filePathNameWExt, 'w') as fp:
         json.dump(data, fp)
 
+
 if __name__ == '__main__':
     '''
-    need to be modified:
+    :
     1. read list of company or country
     input:
         a tokenized document
@@ -80,12 +74,12 @@ if __name__ == '__main__':
         or a summation of vector of a document
     '''
     #glv = utils.build_glove(os.path.join('glove.6B.50d.txt'))
-    print('start glove')    
+    print('start glove')
     glv = utils.build_glove(os.path.join('glove.42B.300d.txt'))
     print('end glove')
     for file_name in glob.glob('*.json_tokenized.json*'):
         config = json.loads(open(file_name).read())
-        print('start %s'%(file_name))
+        print('start %s' % (file_name))
         for key, value in config.items():
             vector_lst = []
             doc_vec = 0
@@ -95,16 +89,16 @@ if __name__ == '__main__':
                 if vector is False:
                     continue
                 doc_vec += vector
-                count +=1
+                count += 1
                 vector_lst.append(vector.tolist())
             config[key]['text2vec'] = vector_lst
             try:
-                config[key]['doc2vec'] = (doc_vec/count).tolist()
+                config[key]['doc2vec'] = (doc_vec / count).tolist()
             except:
                 config[key]['doc2vec'] = []
                 print("No vec")
                 #config[key]['doc2vec'] = []
-        print('done %s'%(file_name))
+        print('done %s' % (file_name))
         writeToJSONFile('./', file_name + '_text2vec', config)
-        
+
         print('One work done!')

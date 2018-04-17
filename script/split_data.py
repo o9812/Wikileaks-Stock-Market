@@ -9,7 +9,9 @@ import json
 
 
 def split_dict_equally(input_dict, chunks=300):
-    "Splits dict by keys. Returns a list of dictionaries."
+    '''
+    Splits dict by keys. Returns a list of dictionaries.
+    '''
     # prep with empty dicts
     return_list = [dict() for idx in range(chunks)]
     idx = 0
@@ -30,13 +32,7 @@ def writeToJSONFile(path, fileName, data):
 
 if __name__ == '__main__':
     '''
-    need to be modified:
-    1. read list of company or country
-    input:
-        a tokenized document
-    output:
-        a bag of text from text
-        or a summation of vector of a document
+    split the file into equal file
     '''
     print('start split')
     for file_name in glob.glob('*.json_tokenized.json'):
