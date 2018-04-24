@@ -25,7 +25,12 @@ def split_dict_equally(input_dict, chunks=300):
 
 
 def writeToJSONFile(path, fileName, data):
-    filePathNameWExt = './' + path + '/' + fileName + '.json'
+    if not os.path.exists(path):
+        '''
+        if there is no output directory, creating one
+        '''
+        os.makedirs(path)
+    filePathNameWExt = path + fileName
     with open(filePathNameWExt, 'w') as fp:
         json.dump(data, fp)
 
@@ -35,11 +40,11 @@ if __name__ == '__main__':
     split the file into equal file
     '''
     print('start split')
-    for file_name in glob.glob('*.json_tokenized.json'):
+    for file_name in glob.glob('*.json'):
         config = json.loads(open(file_name).read())
         print('start %s' % (file_name))
         dict_list = split_dict_equally(config, 10)
         print('done %s' % (file_name))
         for inx, split_file in enumerate(dict_list):
-            writeToJSONFile('./', file_name + str(inx), split_file)
+            writeToJSONFile('./output/', file_name + '_' + str(inx), split_file)
         print('split done!')
