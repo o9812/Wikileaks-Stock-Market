@@ -6,6 +6,7 @@ import json
 import pandas as pd
 import csv
 
+
 def writeToJSONFile(path, fileName, data):
     '''
     merge different dictionaries from different files
@@ -27,7 +28,7 @@ def writeToJSONFile(path, fileName, data):
         data.to_json(fp)
 
 
-exchange = pd.read_json(open('./data/merge_joined_labled.json').read())
+exchange = pd.read_json(open('./merge_joined_labled.json').read())
 text_merge = pd.read_json(open('./output/merge_sql.json').read())
 result = pd.merge(text_merge, exchange, on='date', how='outer')
 
@@ -50,4 +51,5 @@ for i in coutry_list:
     except:
         print('there is not:', i)
 
+    trainset = trainset.reset_index(drop=True)
 writeToJSONFile('./output', 'trainset.json', trainset)

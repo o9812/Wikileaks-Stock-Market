@@ -46,5 +46,5 @@ if __name__ == '__main__':
         dict_list = split_dict_equally(config, 10)
         print('done %s' % (file_name))
         for inx, split_file in enumerate(dict_list):
-            writeToJSONFile('./output/', file_name + '_' + str(inx), split_file)
+            writeToJSONFile('./split_output/', file_name + '_' + str(inx), split_file)
         print('split done!')
