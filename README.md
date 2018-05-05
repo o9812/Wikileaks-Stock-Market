@@ -39,7 +39,7 @@ python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
 ## Output
 The python file would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
 - Country by Country
-It would generate 22 files named by the country name, ex: the input mexico file would generate file `mexico` with 
+It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
 > - mse: mean square error
 > - mae: mean absolute error
 > - median_absolute_error: median absolute error
