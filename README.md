@@ -63,7 +63,6 @@ It would generate 22 files named by the country name, ex: the input `final_Singl
 | mdn_ae_mix                    | 0.00040706   |
 | r2_mix                        | 0.23445956     |
 | -------------                 |-------------| 
-
 (2086, 5)
 
 - Year by Year
