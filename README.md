@@ -16,22 +16,22 @@ We have different data set, one is WikiLeak cables and the other is exchange rat
 ## Run the model
 To run the Random Forest Regression Model, the python file is `RanFrst_regres_final.py`:
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
-> - Country by Country
+- Country by Country
 ```
 python RanFrst_regres_final.py 10 ./data_country/ country_10 -country
 ```
 Here, the pararmeters:
->> - `10`: the number of estimators in random forest model
->> - `./data_country/`: input data path, supposed data is stored under `./data_country/`
->> - `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
->> - `-country`: let the model know it is searching what kind of data (country level or year)
+> - `10`: the number of estimators in random forest model
+> - `./data_country/`: input data path, supposed data is stored under `./data_country/`
+> - `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
+> - `-country`: let the model know it is searching what kind of data (country level or year)
 
 
-> - Year by Year
+- Year by Year
 ```
 python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
 ```
->> - `10`: the number of estimators in random forest model
->> - `./data_year/`: input data path, supposed data is stored under `./data_country/`
->> - `year_10`: output data path, it would automaticall create a directory called `./output_country_10/`
->>- `-year`: let the model know it is searching what kind of data (country level or year)
+> - `10`: the number of estimators in random forest model
+> - `./data_year/`: input data path, supposed data is stored under `./data_country/`
+> - `year_10`: output data path, it would automaticall create a directory called `./output_country_10/`
+> - `-year`: let the model know it is searching what kind of data (country level or year)
