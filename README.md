@@ -39,20 +39,25 @@ python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
 ## Output
 The python file would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
 - Country by Country
-It would generate 22 files named by the country name, ex: `mexico`
+It would generate 22 files named by the country name, ex: `mexico` with 
+- mse: mean square error
+- mae: mean absolute error
+- median_absolute_error: median absolute error
+- r2: r squre score
+- (2086, 5): total 2086 instances with 5 features. (it's the size of input dataframe)
 
 | Country                       | mexico       | 
-| -------------                 |:-------------:| 
+| -------------                 |-------------| 
 | mse_text is                   |1.979e-05 |
 | mae_text is                   | 1.979e-05  | 
 | median_absolute_error stripes |  0.00263002     |
 | r2_text                       | -1.20974962      |
-| -------------                 |:-------------:| 
+| -------------                 |-------------| 
 | mse_price is                   |8.6e-07|
 | mae_price is                   | 0.0004434 | 
 | mdn_ae_price stripes          |  0.00011176    |
 | r2_price                       | 0.9034855     |
-| -------------                 |:-------------:| 
+| -------------                 |-------------| 
 | mse_mix                       |6.86e-06|
 | mae_mix                       | 0.00144322 | 
 | mdn_ae_mix                    | 0.00040706   |
