@@ -7,8 +7,8 @@ We have different data set, one is WikiLeak cables and the other is exchange rat
   
 - Here is country level data
 [country by country](https://drive.google.com/drive/folders/1uHIfkPc2b-b_3XDnRJn3NO2baRxnrXz5?usp=sharing)
-###### The countri list is: 'australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela'
-###### it also includes a joint table of all countries call `final_All_countries`
+#### The countri list is: 'australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela'
+#### it also includes a joint table of all countries call `final_All_countries`
 - Here is year level data
 [year by year](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
 
@@ -21,14 +21,17 @@ To run the Random Forest Regression Model, the python file is `RanFrst_regres_fi
 python RanFrst_regres_final.py 10 ./data_country/ country_10 -country
 ```
 Here, the pararmeters:
--- `10`: the number of estimators in random forest model
--- `./data_country/`: input data path, supposed data is stored under `./data_country/`
--- `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
--- `-country`: let the model know it is searching what kind of data (country level or year)
+- `10`: the number of estimators in random forest model
+- `./data_country/`: input data path, supposed data is stored under `./data_country/`
+- `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
+- `-country`: let the model know it is searching what kind of data (country level or year)
 
 
 - Year by Year
 ```
 python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
 ```
-
+- `10`: the number of estimators in random forest model
+- `./data_year/`: input data path, supposed data is stored under `./data_country/`
+- `year_10`: output data path, it would automaticall create a directory called `./output_country_10/`
+- `-year`: let the model know it is searching what kind of data (country level or year)
