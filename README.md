@@ -39,12 +39,12 @@ python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
 ## Output
 The python file would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
 - Country by Country
-It would generate 22 files named by the country name, ex: `mexico` with 
-- mse: mean square error
-- mae: mean absolute error
-- median_absolute_error: median absolute error
-- r2: r squre score
-- (2086, 5): total 2086 instances with 5 features. (it's the size of input dataframe)
+It would generate 22 files named by the country name, ex: the input mexico file would generate file `mexico` with 
+> - mse: mean square error
+> - mae: mean absolute error
+> - median_absolute_error: median absolute error
+> - r2: r squre score
+> - (2086, 5): total 2086 instances with 5 features. (it's the size of input dataframe)
 
 | Country                       | mexico       | 
 | -------------                 |-------------| 
@@ -67,4 +67,27 @@ It would generate 22 files named by the country name, ex: `mexico` with
 (2086, 5)
 
 - Year by Year
-It would generate
+It would generate 10 files named by the year. ex. the input 2003 files would generate `2003` with 
+> - mse: mean square error
+> - mae: mean absolute error
+> - median_absolute_error: median absolute error
+> - r2: r squre score
+> - (1233, 5): total 1233 instances with 5 features. (it's the size of input dataframe)
+
+| Year                     | 2003       | 
+| -------------                 |-------------| 
+| mse_text is                   |6.79e-06|
+| mae_text is                   | 6.79e-06  | 
+| median_absolute_error stripes |  0.00162758    |
+| r2_text                       | -0.03564915     |
+| -------------                 |-------------| 
+| mse_price is                   |4.17e-06|
+| mae_price is                   | 0.00126901| 
+| mdn_ae_price stripes          |  0.00069519  |
+| r2_price                       | 0.36338027    |
+| -------------                 |-------------| 
+| mse_mix                       |5.36e-06|
+| mae_mix                       | 0.00179364| 
+| mdn_ae_mix                    | 0.00137725   |
+| r2_mix                        | 0.18312545     |
+| -------------                 |-------------| 
