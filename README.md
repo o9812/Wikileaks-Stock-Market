@@ -6,8 +6,8 @@
 We have different data set, one is WikiLeak cables and the other is exchange rate. We split data country by country and year by year.
   
 - Here is country level data
-The countri list is: ['australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela']
 [country by country](https://drive.google.com/drive/folders/1uHIfkPc2b-b_3XDnRJn3NO2baRxnrXz5?usp=sharing)
+###### The countri list is: 'australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela'
 - Here is year level data
 [year by year](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
 
