@@ -2,6 +2,8 @@
 - /data/: test data
 - /script/: store all code and explanation, please read README.md in script folder
 
+
+## Run the model
 To run the Random Forest Regression:
 Country by Country
 ```
