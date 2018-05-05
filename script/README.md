@@ -1,4 +1,5 @@
-# This is script list and explanation, most of them are doing data cleaning
+# This is script list 
+Here are some explanations, most of the scripts are doing data cleaning
 
 ## utilit: works for split and merge data
 - `utilit/merge_dictionary.py`:  merge dictionaries from different files
