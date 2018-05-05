@@ -7,7 +7,7 @@ import pandas as pd
 
 def writeToJSONFile(path, fileName, data):
     '''
-    merge different dictionaries from different files
+    merge different file (dictionaries form) from different files
     input:
         path: path to store the output
         fileName: the stored file name

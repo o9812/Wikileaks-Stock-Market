@@ -58,5 +58,7 @@ for i in coutry_list:
         restult = pd.merge(restult, test_c, on='Date', how='outer')
     except:
         print('No such country:', i)
+
 restult = restult.rename(index=str, columns={"Date": 'date'})
+result = result.reset_index(drop=True)
 writeToJSONFile('./output', 'merge_sql.json', restult)

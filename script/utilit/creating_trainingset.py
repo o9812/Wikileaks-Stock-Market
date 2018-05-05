@@ -35,7 +35,7 @@ result = pd.merge(text_merge, exchange, on='date', how='outer')
 
 coutry_list = ['australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela']
 
-trainset = pd.DataFrame(columns=['date', 'concanate_vec', 'label'])
+trainset = pd.DataFrame(columns=['date', 'text', 'label_dummy', 'label_numerical'])
 for i in coutry_list:
     st = i
     try:
