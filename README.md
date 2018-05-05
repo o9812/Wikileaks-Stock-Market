@@ -42,12 +42,12 @@ The python file would automatically generate output under the user defined outpu
 It would generate 22 files named by the country name, ex: `mexico`
 
 | Country                       | mexico       | 
-| -------------                 |:-------------:| 
++===============================+====================+
 | mse_text is                   |1.979e-05 |
 | mae_text is                   | 1.979e-05  | 
 | median_absolute_error stripes |  0.00263002     |
 | r2_text                       | -1.20974962      |
-| ***                |***| 
++===============================+====================+
 | mse_price is                   |8.6e-07|
 | mae_price is                   | 0.0004434 | 
 | mdn_ae_price stripes          |  0.00011176    |
