@@ -14,7 +14,7 @@ We have different data set, one is WikiLeak cables and the other is exchange rat
 
 
 ## Run the model
-To run the Random Forest Regression Model, the python file is `RanFrst_regres_final.py`:
+To run the Random Forest Regression Model, firstly change working directory to the directory of `RanFrst_regres_final.py`. Then run the python file `RanFrst_regres_final.py`:
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
 - Country by Country
 ```
@@ -32,6 +32,34 @@ Here, the pararmeters:
 python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
 ```
 > - `10`: the number of estimators in random forest model
-> - `./data_year/`: input data path, supposed data is stored under `./data_country/`
-> - `year_10`: output data path, it would automaticall create a directory called `./output_country_10/`
+> - `./data_year/`: input data path, supposed data is stored under `./data_year/`
+> - `year_10`: output data path, it would automaticall create a directory called `./output_year_10/`
 > - `-year`: let the model know it is searching what kind of data (country level or year)
+
+## Output
+The python file would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
+- Country by Country
+It would generate 22 files named by the country name, ex: mexico
+
+| Country                       | mexico       | 
+| -------------                 |:-------------:| 
+| mse_text is                   |1.979e-05 |
+| mae_text is                   | 1.979e-05  | 
+| median_absolute_error stripes |  0.00263002     |
+| r2_text                       | -1.20974962      |
+| -------------                 |:-------------:| 
+| mse_price is                   |8.6e-07|
+| mae_price is                   | 0.0004434 | 
+| mdn_ae_price stripes          |  0.00011176    |
+| r2_price                       | 0.9034855     |
+| -------------                 |:-------------:| 
+| mse_mix                       |6.86e-06|
+| mae_mix                       | 0.00144322 | 
+| mdn_ae_mix                    | 0.00040706   |
+| r2_mix                        | 0.23445956     |
+| -------------                 |-------------| 
+
+(2086, 5)
+
+- Year by Year
+It would generate
