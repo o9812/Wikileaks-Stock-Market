@@ -13,12 +13,17 @@ We have different data set, one is WikiLeak cables and the other is exchange rat
 [year by year](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
 
 
-## Run the model
+## Run the regression and classfication model
 To run the Random Forest Regression Model, firstly change working directory to the directory of `RanFrst_regres_final.py`. Then run the python file `RanFrst_regres_final.py`:
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
 - Country by Country
+### run regression
 ```
-python RanFrst_regres_final.py 10 ./data_country/ country_10 -country
+python RanFrst_regres.py 10 ./data_country/ country_10 -country
+```
+### run calssify
+```
+python RanFrst_classfy.py 10 ./data_country/ country_10 -country
 ```
 Here, the pararmeters:
 > - `10`: the number of estimators in random forest model
@@ -26,18 +31,22 @@ Here, the pararmeters:
 > - `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
 > - `-country`: let the model know it is searching what kind of data (country level or year)
 
-
 - Year by Year
+### run regression
 ```
-python RanFrst_regres_final.py 10 ./data_year/ year_10 -year
+python RanFrst_regres.py 10 ./data_year/ year_10 -year
+```
+### run calssify
+```
+python RanFrst_classfy.py 10 ./data_year/ year_10 -year
 ```
 > - `10`: the number of estimators in random forest model
 > - `./data_year/`: input data path, supposed data is stored under `./data_year/`
 > - `year_10`: output data path, it would automaticall create a directory called `./output_year_10/`
 > - `-year`: let the model know it is searching what kind of data (country level or year)
 
-## Output
-The python file would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
+## Output - regression
+`RanFrst_regres.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
 - Country by Country
 It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
 > - mse: mean square error
@@ -91,3 +100,17 @@ It would generate 10 files named by the year. ex. the input 2003 files would gen
 | r2_mix                        | 0.18312545     |
 | -------------                 |-------------| 
 (1233, 5)
+
+## Output - classify
+
+`RanFrst_classfy.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. What's more, it would automatically create a folder and store three generated AUC figures.
+- Country by Country
+It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
+| Year                     | 2003       | 
+| -------------                 |-------------| 
+| mse_text is                   |[ 0.          0.06140351  1.        ]|
+| mae_text is                   | 6.79e-06  | 
+| median_absolute_error stripes |  0.00162758    |
+| r2_text                       | -0.03564915     |
+| -------------                 |-------------| 
+and `./output_country_10/mexico_figure/`
