@@ -130,5 +130,5 @@ and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
 
 ## Result:
 We used NYU prince hpc to run experiment
-### Random forest regression w/ 10 estimators
-[year by year](https://drive.google.com/drive/folders/1yL5M089DjRimlrfyW15sZ9JEW4zo0tU6?usp=sharing)
+### year by year:
+[Random forest regression w/ 10 estimators](https://drive.google.com/drive/folders/1yL5M089DjRimlrfyW15sZ9JEW4zo0tU6?usp=sharing)
