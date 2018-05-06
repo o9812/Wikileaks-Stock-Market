@@ -51,7 +51,7 @@ python RanFrst_classfy.py 10 ./data_year/ year_10 -year
 > - `year_10`: output data path, it would automaticall create a directory called `./output_year_10/`
 > - `-year`: let the model know it is searching what kind of data (country level or year)
 
-## Output - regression
+## Result - regression
 `RanFrst_regres.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. 
 - Country by Country
 It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
