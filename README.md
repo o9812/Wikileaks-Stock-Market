@@ -105,23 +105,22 @@ It would generate 10 files named by the year. ex. the input 2003 files would gen
 
 `RanFrst_classfy.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. What's more, it would automatically create a folder and store three generated AUC figures.
 - Country by Country
-It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
+It would generate 22 files named by the country name, ex: the input `final_Single_australia` file would generate file `australia` with the following table, fpr is false positive, tpr is true positive, roc_auc is accuracy
 
-| Country                     | australia       | 
+| Country                       | australia       | 
 | -------------                 |-------------| 
-| fpr is:                   |[ 0.          0.06140351  1.        ]|
-| tpr is:                  |[ 0.  0.  1.]  | 
-| roc_auc is |   0.469298245614   |
-| r2_text                       | -0.03564915     |
+| fpr is:                       |[ 0.          0.06140351  1.        ]|
+| tpr is:                       |[ 0.  0.  1.]  | 
+| roc_auc is                    |   0.469298245614   |
 | -------------                 |-------------| 
-| mse_price is                   |4.17e-06|
-| mae_price is                   | 0.00126901| 
-| mdn_ae_price stripes          |  0.00069519  |
-| r2_price                       | 0.36338027    |
+| fpr is:                       |[ 0.          0.00877193  1.        ]|
+| tpr is:                       |[ 0.          0.85714286  1.        ]| 
+| roc_auc is                    | 0.924185463659 |
 | -------------                 |-------------| 
-| mse_mix                       |5.36e-06|
-| mae_mix                       | 0.00179364| 
-| mdn_ae_mix                    | 0.00137725   |
-| r2_mix                        | 0.18312545     |
+| fpr is:                       |[ 0.          0.06140351  1.        ]|
+| tpr is:                       | [ 0.          0.23809524  1.        ]| 
+| roc_auc is                    | 0.588345864662|
 | -------------                 |-------------| 
-and `./output_country_10/mexico_figure/`
+(1350, 5)
+
+and three figures show roc_aucc under `./output_country_10/mexico_figure/`
