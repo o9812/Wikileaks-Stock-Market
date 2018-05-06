@@ -46,7 +46,7 @@ python RanFrst_classfy.py 10 ./data_year/ year_10 -year
 > - `-year`: let the model know it is searching what kind of data (country level or year)
 
 ## Output - regression
-`RanFrst_regres.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. 
+`RanFrst_regres.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. 
 - Country by Country
 It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
 > - mse: mean square error
@@ -103,14 +103,24 @@ It would generate 10 files named by the year. ex. the input 2003 files would gen
 
 ## Output - classify
 
-`RanFrst_classfy.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_uear_10/`. What's more, it would automatically create a folder and store three generated AUC figures.
+`RanFrst_classfy.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. What's more, it would automatically create a folder and store three generated AUC figures.
 - Country by Country
 It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
 | Year                     | 2003       | 
 | -------------                 |-------------| 
-| mse_text is                   |0.          0.06140351  1.        |
+| mse_text is                   |6.79e-06|
 | mae_text is                   | 6.79e-06  | 
 | median_absolute_error stripes |  0.00162758    |
 | r2_text                       | -0.03564915     |
+| -------------                 |-------------| 
+| mse_price is                   |4.17e-06|
+| mae_price is                   | 0.00126901| 
+| mdn_ae_price stripes          |  0.00069519  |
+| r2_price                       | 0.36338027    |
+| -------------                 |-------------| 
+| mse_mix                       |5.36e-06|
+| mae_mix                       | 0.00179364| 
+| mdn_ae_mix                    | 0.00137725   |
+| r2_mix                        | 0.18312545     |
 | -------------                 |-------------| 
 and `./output_country_10/mexico_figure/`
