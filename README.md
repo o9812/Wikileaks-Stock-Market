@@ -9,24 +9,26 @@ We have two datasets: one is WikiLeak cable dataset and the other one is the exc
 
 We split data by country and year.
   
-- Here is the country level data
-
-[country by country](https://drive.google.com/drive/folders/1uHIfkPc2b-b_3XDnRJn3NO2baRxnrXz5?usp=sharing)
+- [country by country](https://drive.google.com/drive/folders/1uHIfkPc2b-b_3XDnRJn3NO2baRxnrXz5?usp=sharing)
 #### The countri list is: 'australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela'
 #### it also includes a joint table of all countries call `final_All_countries`
 
-- Here is the year level data
-[year by year](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
+- [Here is the year level data](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
 
 
-## Run the regression and classfication model
-To run the Random Forest Regression Model, firstly change working directory to the directory of `RanFrst_regres.py`. Then run the python script as follwoing instructions:
+## Build the regression and classfication model
+To build the Random Forest Regression Model : 
+1. Change working directory to the directory of `RanFrst_regres.py`. 
+2. Run the python script as follwoing instructions:
+
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
 - Country by Country
+
 ### run random forest regressor
 ```
 python RanFrst_regres.py 10 ./data_country/ country_10 -country
 ```
+
 ### run random forest classifier
 ```
 python RanFrst_classfy.py 10 ./data_country/ country_10 -country
