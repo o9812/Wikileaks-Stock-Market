@@ -107,11 +107,11 @@ It would generate 10 files named by the year. ex. the input 2003 files would gen
 - Country by Country
 It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
 
-| Year                     | 2003       | 
+| Country                     | australia       | 
 | -------------                 |-------------| 
-| mse_text is                   |6.79e-06|
-| mae_text is                   | 6.79e-06  | 
-| median_absolute_error stripes |  0.00162758    |
+| fpr is:                   |[ 0.          0.06140351  1.        ]|
+| tpr is:                  |[ 0.  0.  1.]  | 
+| roc_auc is |   0.469298245614   |
 | r2_text                       | -0.03564915     |
 | -------------                 |-------------| 
 | mse_price is                   |4.17e-06|
