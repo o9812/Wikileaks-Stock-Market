@@ -17,11 +17,11 @@ We have different data set, one is WikiLeak cables and the other is exchange rat
 To run the Random Forest Regression Model, firstly change working directory to the directory of `RanFrst_regres.py`. Then run the python script as follwoing instructions:
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
 - Country by Country
-### run regression
+### run random forest regressor
 ```
 python RanFrst_regres.py 10 ./data_country/ country_10 -country
 ```
-### run calssify
+### run random forest classifier
 ```
 python RanFrst_classfy.py 10 ./data_country/ country_10 -country
 ```
