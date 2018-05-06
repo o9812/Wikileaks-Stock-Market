@@ -106,9 +106,9 @@ It would generate 10 files named by the year. ex. the input 2003 files would gen
 `RanFrst_classfy.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. What's more, it would automatically create a folder and store three generated AUC figures.
 - Country by Country
 It would generate 22 files named by the country name, ex: the input `final_Single_australia` file would generate file `australia` with the following table, 
-> - fpr is increasing false positive, in this example only has one treshold
-> - tpr is increasing true positive, in this example only has one treshold
-> - roc_auc is increasing accuracy: compute area under the receiver operating characteristic curve (ROC AUC)
+> - fpr: increasing false positive. in this example only has one treshold
+> - tpr: increasing true positive. in this example only has one treshold
+> - roc_auc: increasing accuracy, computing area under the receiver operating characteristic curve (ROC AUC)
 
 | Country                       | australia       | 
 | -------------                 |-------------| 
