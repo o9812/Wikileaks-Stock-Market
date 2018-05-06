@@ -127,3 +127,7 @@ It would generate 22 files named by the country name, ex: the input `final_Singl
 (1350, 5)
 
 and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
+
+## Result:
+### Using NYU prince hpc run Random forest regression with 10 estimators
+[year by year](https://drive.google.com/drive/folders/1yL5M089DjRimlrfyW15sZ9JEW4zo0tU6?usp=sharing)
