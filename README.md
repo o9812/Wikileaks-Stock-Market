@@ -14,7 +14,7 @@ We have different data set, one is WikiLeak cables and the other is exchange rat
 
 
 ## Run the regression and classfication model
-To run the Random Forest Regression Model, firstly change working directory to the directory of `RanFrst_regres_final.py`. Then run the python file `RanFrst_regres_final.py`:
+To run the Random Forest Regression Model, firstly change working directory to the directory of `RanFrst_regres.py`. Then run the python script as follwoing instructions:
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
 - Country by Country
 ### run regression
@@ -108,7 +108,7 @@ It would generate 10 files named by the year. ex. the input 2003 files would gen
 It would generate 22 files named by the country name, ex: the input `final_Single_mexico` file would generate file `mexico` with 
 | Year                     | 2003       | 
 | -------------                 |-------------| 
-| mse_text is                   |[ 0.          0.06140351  1.        ]|
+| mse_text is                   |0.          0.06140351  1.        |
 | mae_text is                   | 6.79e-06  | 
 | median_absolute_error stripes |  0.00162758    |
 | r2_text                       | -0.03564915     |
