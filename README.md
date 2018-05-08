@@ -10,10 +10,13 @@ We have two datasets: one is WikiLeak cable dataset and the other one is the exc
 We split data by country and year.
   
 - [country by country](https://drive.google.com/drive/folders/1uHIfkPc2b-b_3XDnRJn3NO2baRxnrXz5?usp=sharing)
+- [country by country - negative](https://drive.google.com/drive/folders/1wzG2AGAE3wy-v-GdwZlsixZoV6yVycot?usp=sharing)
+
 #### The countri list is: 'australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela'
 #### it also includes a joint table of all countries call `final_All_countries`
 
 - [Here is the year level data](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
+- [Here is year level data - negative](https://drive.google.com/drive/folders/1l8YtosubkGm4T4Wbi2qnv3sFpFKK3ciy?usp=sharing)
 
 
 ## Build the regression and classfication model
