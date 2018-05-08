@@ -1,4 +1,4 @@
-# Predicting exchange rate change with Diplomacy cables
+# Predicting exchange rate change with diplomacy cables
 
 - This project's objective is to measure how confidential information affects the financial market. We know that market efficiency is based on the assumption that all market participants have fair access to the market. More importantly, it includes any kind of information. However, people do possess confidential information in the real world. Most financial markets have prohibited any kind of inside trading. Because of the difficulties to access confidential data, detecting the influence of confidential information affect market is hard. 
 
