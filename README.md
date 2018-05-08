@@ -15,8 +15,12 @@ We split data by country and year.
 #### The countri list is: 'australia', 'brazil', 'canada', 'china', 'denmark', 'hong kong', 'india', 'japan', 'korea', 'malaysia', 'mexico', 'new zealand', 'norway', 'sweden', 'south africa', 'singapore', 'sri lanka', 'switzerland', 'taiwan', 'thailand', 'united kingdom', 'venezuela'
 #### it also includes a joint table of all countries call `final_All_countries`
 
-- [Here is the year level data](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
-- [Here is year level data - negative](https://drive.google.com/drive/folders/1l8YtosubkGm4T4Wbi2qnv3sFpFKK3ciy?usp=sharing)
+- [year by year](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
+- [year by year - negative](https://drive.google.com/drive/folders/1l8YtosubkGm4T4Wbi2qnv3sFpFKK3ciy?usp=sharing)
+
+And the following is all country and all year
+- [all by all](https://drive.google.com/drive/folders/1gJhyw0p9Ha6C4Yd2yq6P6YYSFU4QNlLD?usp=sharing)
+- [all by all - negative(https://drive.google.com/drive/folders/1oQkmha0nOgHo6tlEjD9SO1VKJ4f-HtAg?usp=sharing)
 
 
 ## Build the regression and classfication model
