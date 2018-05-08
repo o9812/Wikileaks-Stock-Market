@@ -20,7 +20,7 @@ We split data by country and year.
 
 And the following is all country and all year
 - [all by all](https://drive.google.com/drive/folders/1gJhyw0p9Ha6C4Yd2yq6P6YYSFU4QNlLD?usp=sharing)
-- [all by all - negative(https://drive.google.com/drive/folders/1oQkmha0nOgHo6tlEjD9SO1VKJ4f-HtAg?usp=sharing)
+- [all by all - negative](https://drive.google.com/drive/folders/1oQkmha0nOgHo6tlEjD9SO1VKJ4f-HtAg?usp=sharing)
 
 
 ## Build the regression and classfication model
