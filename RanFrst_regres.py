@@ -161,6 +161,7 @@ if __name__ == "__main__":
         python RanFrst_regres_final.py 30 ./data_country/ country_30 -country
         python RanFrst_regres_final.py 30 ./data_year/ year_30 -year
     """
+
     n_estimators = int(sys.argv[1])
     # n_estimators = 1
     # relative path: ./output_yr/
@@ -171,11 +172,11 @@ if __name__ == "__main__":
     type_rf = sys.argv[4]
     type_rf_ = None
     if type_rf == '-year':
-        type_rf_ = 'yr*'
+        type_rf_ = '*'
     elif type_rf == '-country':
-        type_rf_ = 'final*'
+        type_rf_ = '*'
     # output_filename = 'coutry'
-
+    print('RanFrst Regression with ' + n_estimators + ' estimators')
     for file_path in glob.glob(data_path + type_rf_):
         print(file_path)
         fileName = file_path.split('_')[-1]
