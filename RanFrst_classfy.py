@@ -12,9 +12,6 @@ import glob
 from sklearn.metrics import roc_curve, auc
 import matplotlib
 matplotlib.use('Agg')
-'''
-run plt in the backen https://stackoverflow.com/questions/2801882/generating-a-png-with-matplotlib-when-display-is-undefined
-'''
 import matplotlib.pyplot as plt
 
 

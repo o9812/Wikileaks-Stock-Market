@@ -61,6 +61,25 @@ class RF_regression:
         X_valid, X_test, y_valid, y_test = train_test_split(X_valid, y_valid, test_size=0.5, random_state=42)
 
         return X_train, y_train, X_valid, y_valid, X_test, y_test, size
+    # try new features
+    # def plot_coefficients(X, random_forest):
+    #     feature_names = X.columns.values
+    #     importance = random_forest.feature_importances
+
+    #     sorted_importance = np.argsort(importance)
+
+    #     # index of importance (top...)
+    #     # least importance ~ most importance
+
+    #     top10_importance = sorted_importance[-10:]
+
+    #     top_names = feature_names[top10_importance]
+
+    #     plt.xticks(top_names)
+    #     plt.bar(top10_importance)
+
+
+
 
     def text_sparse(self, X_train, X_valid, X_test, ngram_range=(1, 2)):
         '''
