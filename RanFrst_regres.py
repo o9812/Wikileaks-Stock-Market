@@ -195,7 +195,7 @@ if __name__ == "__main__":
     elif type_rf == '-country':
         type_rf_ = '*'
     # output_filename = 'coutry'
-    print('RanFrst Regression with ' + n_estimators + ' estimators')
+    print('RanFrst Regression with ' , n_estimators , ' estimators')
     for file_path in glob.glob(data_path + type_rf_):
         print(file_path)
         fileName = file_path.split('_')[-1]
