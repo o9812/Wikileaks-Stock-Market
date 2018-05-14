@@ -156,4 +156,9 @@ We used NYU prince hpc to run experiment
 > [Random forest classify w/ 10 estimators](https://drive.google.com/drive/folders/1jB1Bjm2rpqIjy0ehX5ECw25Fo3fza3Ew?usp=sharing)
 
 # try the negative one
-[Random forest classify w/ 100 estimators with negative](https://drive.google.com/drive/u/1/folders/1phB7BHdyNfNN0E5x-4CTvkUw-CytBimA)
+### All countries and years
+>[Random forest classify w/ 100 estimators with negative](https://drive.google.com/drive/u/1/folders/1phB7BHdyNfNN0E5x-4CTvkUw-CytBimA)
+### All years
+>[Random forest classify w/ 100 estimators with negative](https://drive.google.com/drive/folders/1vjVjpDtPU8BEdJPUBRAFgv1DeNNan6_U?usp=sharing)
+### All countries
+>[Random forest classify w/ 100 estimators with negative](https://drive.google.com/open?id=16SVbkRaDNkB7UcYyJ1x920OHp_2xaSEV)
