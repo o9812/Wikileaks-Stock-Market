@@ -154,11 +154,11 @@ class RF_regression:
 
 
 def write_file(path, fileName, data, models):
-    if not os.path.exists(path):
+    if not os.path.exists(path + '/' + model):
         '''
         if there is no output directory, creating one
         '''
-        os.makedirs(path)
+        os.makedirs(path + '/' + model)
 
     filePathNameWExt = './' + path + '/' + fileName
     with open(filePathNameWExt, 'w') as fp:
@@ -171,9 +171,14 @@ def write_file(path, fileName, data, models):
             fp.write("\n")
         fp.write("%s\n" % data[-1])
     fp.close()
-    for i, model in enumerate(models):
-        pickle.dump(model, open(filePathNameWExt + str(i) + ".p", "wb")
 
+    if not os.path.exists(path):
+        '''
+        if there is no output directory, creating one
+        '''
+        os.makedirs(path)
+    for i, model in enumerate(models):
+        pickle.dump(model, open('./' + path + '/' + model + '/' + fileName + str(i) + ".p", "wb"))
 
 
 if __name__ == "__main__":
@@ -183,39 +188,40 @@ if __name__ == "__main__":
         python RanFrst_regres_final.py 30 ./data_year/ year_30 -year
     """
 
-    n_estimators=int(sys.argv[1])
+    n_estimators = int(sys.argv[1])
     # n_estimators = 1
     # relative path: ./output_yr/
-    data_path=sys.argv[2]
+    data_path = sys.argv[2]
     # output folder name
-    output_filename=sys.argv[3]
+    output_filename = sys.argv[3]
     # type_rf is '-year' or '-country'
-    type_rf=sys.argv[4]
-    type_rf_=None
-    if type_rf == '-year':
-        type_rf_='*'
-    elif type_rf == '-country':
-        type_rf_='*'
+    type_rf = sys.argv[4]
+    type_rf_ = '*'
+    # type_rf_ = None
+    # if type_rf == '-year':
+    #     type_rf_ = '*'
+    # elif type_rf == '-country':
+    #     type_rf_ = '*'
     # output_filename = 'coutry'
     print('RanFrst Regression with ', n_estimators, ' estimators')
     for file_path in glob.glob(data_path + type_rf_):
         print(file_path)
         # deal with exception file name, negative suff
-        fileName=file_path.split('_')[-1]
+        fileName = file_path.split('_')[-1]
         if fileName == 'ng':
-            fileName=file_path.split('_')[-2]
+            fileName = file_path.split('_')[-2]
 
         print('%s: ' % type_rf, fileName)
         # ngram_range = sys.argv[3]
-        rf=RF_regression(file_path)
+        rf = RF_regression(file_path)
 
         # do text, price and mix random forest: return list of values
-        only_text, model_text=rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+        only_text, model_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
         # pickle.dump( model_text, open( "save.p", "wb" ) )
 
-        only_price, model_price=rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
+        only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
         # pickle.dump( model_price, open( "save.p", "wb" ) )
-        mix_price_text, model_mix=rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+        mix_price_text, model_mix = rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
         # pickle.dump( model_mix, open( "save.p", "wb" ) )
         # fileName
         print('size is: ' + str(rf.size))
