@@ -13,6 +13,7 @@ from scipy.sparse import hstack
 import sys
 import os
 import glob
+import pickle
 
 
 class RF_regression:
@@ -78,9 +79,6 @@ class RF_regression:
     #     plt.xticks(top_names)
     #     plt.bar(top10_importance)
 
-
-
-
     def text_sparse(self, X_train, X_valid, X_test, ngram_range=(1, 2)):
         '''
         input
@@ -108,11 +106,12 @@ class RF_regression:
         mae_text = mean_absolute_error(y_valid['num_lable'], y_predict_text)
         mdn_ae_text = median_absolute_error(y_valid['num_lable'], y_predict_text)
         r2_text = r2_score(y_valid['num_lable'], y_predict_text)
+
         print("mse_text is: ", mse_text)
         print("mae_text is: ", mae_text)
         print("median_absolute_error: ", mdn_ae_text)
         print("r2_text: ", r2_text)
-        return ["mse_text is: " + str(round(mse_text, 8)), "mae_text is: " + str(round(mse_text, 8)), "median_absolute_error: " + str(round(mdn_ae_text, 8)), "r2_text: " + str(round(r2_text, 8))]
+        return ["mse_text is: " + str(round(mse_text, 8)), "mae_text is: " + str(round(mse_text, 8)), "median_absolute_error: " + str(round(mdn_ae_text, 8)), "r2_text: " + str(round(r2_text, 8))], clf_text
 
     def rf_price(self, X_train, y_train, X_valid, y_valid, n_estimators=10):
         self.x_arr2matrix_train = np.array(X_train['lg_rt_features'].tolist())
@@ -131,7 +130,7 @@ class RF_regression:
         print("mae_price is: ", mae_price)
         print("mdn_ae_price: ", mdn_ae_price)
         print("r2_price: ", r2_price)
-        return ["mse_price is: " + str(round(mse_price, 8)), "mae_price is: " + str(round(mae_price, 8)), "mdn_ae_price: " + str(round(mdn_ae_price, 8)), "r2_price: " + str(round(r2_price, 8))]
+        return ["mse_price is: " + str(round(mse_price, 8)), "mae_price is: " + str(round(mae_price, 8)), "mdn_ae_price: " + str(round(mdn_ae_price, 8)), "r2_price: " + str(round(r2_price, 8))], clf_price
 
     def rf_mix(self, X_train, y_train, X_valid, y_valid, n_estimators=10):
         # mix sparse matrix(tf-idf) and numpy array (price)
@@ -151,10 +150,10 @@ class RF_regression:
         print("mae_mix is: ", mae_mix)
         print("mdn_ae_mix: ", mdn_ae_mix)
         print("r2_mix: ", r2_mix)
-        return ["mse_mix is: " + str(round(mse_mix, 8)), "mae_mix is: " + str(round(mae_mix, 8)), "mdn_ae_mix: " + str(round(mdn_ae_mix, 8)), "r2_mix: " + str(round(r2_mix, 8))]
+        return ["mse_mix is: " + str(round(mse_mix, 8)), "mae_mix is: " + str(round(mae_mix, 8)), "mdn_ae_mix: " + str(round(mdn_ae_mix, 8)), "r2_mix: " + str(round(r2_mix, 8))], clf_mix
 
 
-def write_file(path, fileName, data):
+def write_file(path, fileName, data, models):
     if not os.path.exists(path):
         '''
         if there is no output directory, creating one
@@ -172,6 +171,9 @@ def write_file(path, fileName, data):
             fp.write("\n")
         fp.write("%s\n" % data[-1])
     fp.close()
+    for i, model in enumerate(models):
+        pickle.dump(model, open(filePathNameWExt + str(i) + ".p", "wb")
+
 
 
 if __name__ == "__main__":
@@ -181,32 +183,40 @@ if __name__ == "__main__":
         python RanFrst_regres_final.py 30 ./data_year/ year_30 -year
     """
 
-    n_estimators = int(sys.argv[1])
+    n_estimators=int(sys.argv[1])
     # n_estimators = 1
     # relative path: ./output_yr/
-    data_path = sys.argv[2]
+    data_path=sys.argv[2]
     # output folder name
-    output_filename = sys.argv[3]
+    output_filename=sys.argv[3]
     # type_rf is '-year' or '-country'
-    type_rf = sys.argv[4]
-    type_rf_ = None
+    type_rf=sys.argv[4]
+    type_rf_=None
     if type_rf == '-year':
-        type_rf_ = '*'
+        type_rf_='*'
     elif type_rf == '-country':
-        type_rf_ = '*'
+        type_rf_='*'
     # output_filename = 'coutry'
-    print('RanFrst Regression with ' , n_estimators , ' estimators')
+    print('RanFrst Regression with ', n_estimators, ' estimators')
     for file_path in glob.glob(data_path + type_rf_):
         print(file_path)
-        fileName = file_path.split('_')[-1]
+        # deal with exception file name, negative suff
+        fileName=file_path.split('_')[-1]
+        if fileName == 'ng':
+            fileName=file_path.split('_')[-2]
+
         print('%s: ' % type_rf, fileName)
         # ngram_range = sys.argv[3]
-        rf = RF_regression(file_path)
+        rf=RF_regression(file_path)
 
         # do text, price and mix random forest: return list of values
-        only_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
-        only_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
-        mix_price_text = rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
-        # fileName
+        only_text, model_text=rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+        # pickle.dump( model_text, open( "save.p", "wb" ) )
 
-        write_file('output_' + output_filename, fileName, [only_text, only_price, mix_price_text, str(rf.size)])
+        only_price, model_price=rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
+        # pickle.dump( model_price, open( "save.p", "wb" ) )
+        mix_price_text, model_mix=rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+        # pickle.dump( model_mix, open( "save.p", "wb" ) )
+        # fileName
+        print('size is: ' + str(rf.size))
+        write_file('output_' + output_filename, fileName, [only_text, only_price, mix_price_text, str(rf.size)], [model_text, model_price, model_mix])
