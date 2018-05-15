@@ -178,7 +178,7 @@ def write_file(path, fileName, data, models):
         '''
         os.makedirs(path)
     for i, model in enumerate(models):
-        pickle.dump(model, open('./' + path + '/' + model + '/' + fileName + str(i) + ".p", "wb"))
+        pickle.dump(model, open('./' + path + '/model/' + fileName + str(i) + ".p", "wb"))
 
 
 if __name__ == "__main__":
