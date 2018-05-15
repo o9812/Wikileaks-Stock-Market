@@ -11,6 +11,6 @@
 #SBATCH --mail-type=end  # email me when the job ends
 
 # Change the home directory
-cd /home/ypl238/ml_project/
+cd /home/ypl238/Wikileaks-Stock-Market/
 
-python3 -u RanFrst_regres_final.py 100 ./data_all_country/ country_100 -country
+python3 -u RanFrst_regres.py 1 ./data_all_country_neg/ country_neg_1 -country
