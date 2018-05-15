@@ -154,11 +154,11 @@ class RF_regression:
 
 
 def write_file(path, fileName, data, models):
-    if not os.path.exists(path + '/' + model):
+    if not os.path.exists(path + '/model'):
         '''
         if there is no output directory, creating one
         '''
-        os.makedirs(path + '/' + model)
+        os.makedirs(path + '/model')
 
     filePathNameWExt = './' + path + '/' + fileName
     with open(filePathNameWExt, 'w') as fp:
