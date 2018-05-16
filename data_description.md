@@ -79,7 +79,7 @@
     - Content: the raw content of each cable.
 
 - `crsp_data/CRSP_data/data_country_ng`
-    > Only contain instance which has negative numerical label
+    > Only contain instance which has negative numerical label. 
     > `final_All_countries_ng` contain all year and all countris
     - Single country. A data frame with 5 column.
     - date: date of the wikileaks
