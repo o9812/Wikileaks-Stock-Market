@@ -42,7 +42,7 @@
     - US - United States
 
 
-## Raw data of crsp data
+## Raw data of crsp data (on server)
 - `crsp_data/CRSP_data/Company_List`: 
    -  include all companies listed on NYSE, AMEX and NASDAQ as of Mar 31 2018.
    - From the three exchange AMEX, NYSE and NADAQ
@@ -76,4 +76,23 @@
     - num_lable: numerical label, the exchange rate 
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
+
+- `crsp_data/CRSP_data/data_country_ng`
+    > Only contain instance which has negative numerical label
+    - Single country. A data frame with 5 column.
+    - date: date of the wikileaks
+    - lg_rt_features: 15 days exchange rate before the date
+    - num_lable: numerical label, the exchange rate 
+    - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
+    - Content: the raw content of each cable.
+    
+- `crsp_data/CRSP_data/data_year_ng`
+    > Only contain instance which has negative numerical label
+    - Single year. A data frame with 5 column.
+    - date: date of the wikileaks
+    - lg_rt_features: 15 days exchange rate before the date
+    - num_lable: numerical label, the exchange rate 
+    - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
+    - Content: the raw content of each cable.
+    
 
