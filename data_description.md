@@ -7,22 +7,22 @@
 
     - Json files cluding each cable. Each cable has unique keys, and Includes keys: 
     - Content: content of wikileaks cable
-    - Raw content: content of wikileaks cable
+    - Raw content: raw content of wikileaks cable
     - Metadata: metadata of wikileaks cable
     - Date: date of wikileaks cable
-    - Canonical ID: id of wikileaks cable
-    - Original Classification: wikileaks cable classification
-    - Current Classification: wikileaks cable classification
-    - Handling Restrictions: Not using this 
-    - Character Count: 
+    - Canonical ID: id of wikileaks cable in PlusD
+    - Original Classification: wikileaks cable origin classification
+    - Current Classification: wikileaks cable modified classification by PlusD
+    - Handling Restrictions: Not used (the intermediate data from scraping) 
+    - Character Count: the count number of words
     - Executive Order: Not used (the intermediate data from scraping) 
     - Locator: Not used (the intermediate data from scraping)
     - TAGS: TAGS in the wikileaks dataset
     - Concepts: Not used (the intermediate data from scraping)
     - Enclosure: Not used (the intermediate data from scraping)
     - Type: Type of the cable
-    - Office Origin: Who own the cable
-    - Office Action: Who execute the cable
+    - Office Origin: Who owns the cable
+    - Office Action: Who executes the cable
     - Archive Status: The status of the cable in dataset
     - From: From whom/ which country
     - Markings
@@ -63,6 +63,7 @@
     Australia, Brazil, Canada, China, Denmark, Hong Kong, India, Japan, Korea, Malaysia, Mexico, New Zealand, Norway, Sweden, South Africa, Singapore, Sri Lanka, Switzerland, Taiwan, Thailand, United Kingdom, Venezuela, Austria, Belgium, Finland, France, Germany, Greece, Ireland, Italy, Netherlands, Portugal, Spain, Euro, ECU
 |
 - `crsp_data/CRSP_data/data_country`:
+    > `final_All_countries` contain all year and all countris
     - Single country. A data frame with 5 column.
     - date: date of the wikileaks
     - lg_rt_features: 15 days exchange rate before the date
@@ -79,6 +80,7 @@
 
 - `crsp_data/CRSP_data/data_country_ng`
     > Only contain instance which has negative numerical label
+    > `final_All_countries_ng` contain all year and all countris
     - Single country. A data frame with 5 column.
     - date: date of the wikileaks
     - lg_rt_features: 15 days exchange rate before the date
