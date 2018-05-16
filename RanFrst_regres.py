@@ -89,6 +89,10 @@ class RF_regression:
         # fit the traing data for vector
         tfidf_vectorizer = TfidfVectorizer(binary=True, ngram_range=ngram_range)
         tfidf_vectorizer.fit(X_train["Content"])
+        
+        with open(fileName+'.pickle', 'wb') as handle:
+            pickle.dump(a, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        
         # turn text to matrix
         X_train_tfidf = tfidf_vectorizer.transform(X_train["Content"])
         X_valid_tfidf = tfidf_vectorizer.transform(X_valid["Content"])
@@ -216,12 +220,24 @@ if __name__ == "__main__":
         rf = RF_regression(file_path)
 
         # do text, price and mix random forest: return list of values
-        only_text, model_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+        #only_text, model_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
         # pickle.dump( model_text, open( "save.p", "wb" ) )
 
-        only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
+        #only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
         # pickle.dump( model_price, open( "save.p", "wb" ) )
         mix_price_text, model_mix = rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+        feature_importance=model_mix.feature_importances_
+        # Find best 50 features 
+        indices = np.argsort(importances)[::-1][0:50]
+        #Select sparse Matrix
+        rf.X_new_train_tfidf_=rf.X_train_tfidf.tocsc()[:, indices]
+        rf.X_new_valid_tfidf=rf.X_valid_tfidf.tocsc()[:, indices]
+        #new_clf=RandomForestRegressor(n_estimators)
+        #build models with selected matrix
+        
+        print ('New Model')
+        rf.rf_mix(X_train, y_train, X_valid, y_valid, n_estimators)
+
         # pickle.dump( model_mix, open( "save.p", "wb" ) )
         # fileName
         print('size is: ' + str(rf.size))
