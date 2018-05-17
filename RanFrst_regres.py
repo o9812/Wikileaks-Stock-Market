@@ -246,7 +246,7 @@ class RF_regression:
         return ["mse_mix is: " + str(round(mse_mix, 8)), "mae_mix is: " + str(round(mae_mix, 8)), "mdn_ae_mix: " + str(round(mdn_ae_mix, 8)), "r2_mix: " + str(round(r2_mix, 8))], clf_mix
 
 
-def write_file(path, fileName, data, models, plt_feature_important = None):
+def write_file(path, fileName, data, models, plt_feature_important=None):
     """
     @ input:
         path        : open the file path to store file
@@ -367,7 +367,7 @@ if __name__ == "__main__":
 
             # build models with selected matrix
             print('New Model')
-            text_new, model_text_new = rf.rf_text(X_train, y_train, X_valid, y_valid)
+            text_new, model_text_new = rf.rf_text(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid)
             result.append(text_new)
             model_result.append(model_text_new)
 
@@ -393,7 +393,7 @@ if __name__ == "__main__":
 
             # build models with selected matrix
             print('New Model')
-            price_new, model_price_new = rf.rf_price(X_train, y_train, X_valid, y_valid)
+            price_new, model_price_new = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid)
             result.append(price_new)
             model_result.append(model_price_new)
 
