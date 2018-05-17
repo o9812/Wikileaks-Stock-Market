@@ -94,7 +94,8 @@ class RF_regression:
         # split data as train(0.8), validation(0.1) and test set(0.1)
         X_train, X_valid, y_train, y_valid = train_test_split(x_austrilia, y_austrilia, test_size=0.2, random_state=44)
         # X_valid, X_test, y_valid, y_test = train_test_split(X_valid, y_valid, test_size=0.5, random_state=44)
-
+        X_test = None
+        y_test = None
         return X_train, y_train, X_valid, y_valid, X_test, y_test, size
     # try new features
     # def plot_coefficients(X, random_forest):
