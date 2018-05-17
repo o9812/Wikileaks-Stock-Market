@@ -46,8 +46,8 @@ class RF_regression:
 
         v_train = DictVectorizer(sparse=False)
         v_valid = DictVectorizer(sparse=False)
-        self.x_arr2matrix_train = v_train.fit_transform(self.X_train['lg_rt_features'].tolist())
-        self.x_arr2matrix_valid = v_valid.fit_transform(self.X_valid['lg_rt_features'].tolist())
+        self.x_arr2matrix_train = v_train.fit_transform(self.X_train['lg_rt_features'])
+        self.x_arr2matrix_valid = v_valid.fit_transform(self.X_valid['lg_rt_features'])
 
         # self.x_arr2matrix_train = np.array(self.X_train['lg_rt_features'].tolist())
         # self.x_arr2matrix_valid = np.array(self.X_valid['lg_rt_features'].tolist())
