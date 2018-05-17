@@ -124,7 +124,7 @@ class RF_regression:
             X_train_tfidf: with vectorization TF-IDF, sparse matrix
         '''
         # fit the traing data for vector
-        tfidf_vectorizer = TfidfVectorizer(binary=True, ngram_range=ngram_range)
+        tfidf_vectorizer = TfidfVectorizer(binary=True, ngram_range=ngram_range, stop_words='english')
         tfidf_vectorizer.fit(X_train["Content"])
 
         # with open(fileName + '.pickle', 'wb') as handle:
