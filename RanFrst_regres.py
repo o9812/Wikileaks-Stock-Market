@@ -362,7 +362,8 @@ if __name__ == "__main__":
             indices = np.argsort(feature_importance)[::-1][0:50]
 
             # get the feature top 50 name
-            feature_list = model_mix.get_feature_names()
+
+            feature_list = rf.x_mix_train.get_feature_names()
             feature_list_50 = []
             for index in indices[0:50]:
                 feature_list_50.append(feature_list[index])
