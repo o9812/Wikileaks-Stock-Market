@@ -388,8 +388,8 @@ if __name__ == "__main__":
             # temp store the training and validation set
             temp_x_train, temp_x_valid = rf.x_arr2matrix_train, rf.x_arr2matrix_valid
             # Select sparse Matrix, the top 50 features, renew the matrix
-            rf.x_arr2matrix_train = rf.x_arr2matrix_train.tocsc()[:, indices]
-            rf.x_arr2matrix_valid = rf.x_arr2matrix_valid.tocsc()[:, indices]
+            rf.x_arr2matrix_train = rf.x_arr2matrix_train[:, indices]
+            rf.x_arr2matrix_valid = rf.x_arr2matrix_valid[:, indices]
 
             # build models with selected matrix
             print('New Model')
