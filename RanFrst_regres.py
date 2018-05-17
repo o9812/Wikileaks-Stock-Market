@@ -310,7 +310,7 @@ if __name__ == "__main__":
         including for metrics and trained data
 
     run this program by:
-        ex: python RanFrst_regres.py 30 ./data_country/ country_30 -mix
+        ex: python RanFrst_regres.py 30 ./data_all_country_neg/ country_1_neg -mix
 
     """
     # n_estimators = 1
@@ -365,8 +365,8 @@ if __name__ == "__main__":
             # get the feature top 50 name
             feature_list = model_mix.x_mix_train.get_feature_names()
             feature_list_50 = []
-                for index in indices[0:50]:
-                    feature_list_50.append(feature_list[index])
+            for index in indices[0:50]:
+                feature_list_50.append(feature_list[index])
 
             plt_feature_important = draw(feature_importance, indices, feature_list_50)
             # Select sparse Matrix, the top 50 features, renew the matrix
