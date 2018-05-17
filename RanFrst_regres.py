@@ -379,8 +379,6 @@ if __name__ == "__main__":
             result.append(mix_price_text_new)
             model_result.append(model_mix_new)
 
-        thelist[-1].savefig(figure_path + '/' + str(i))
-            thelist[-1].close()
         # record the size
         print('size is: ' + str(rf.size))
         result.append(str(rf.size))
