@@ -362,12 +362,12 @@ if __name__ == "__main__":
             temp_x_train, temp_x_valid = rf.X_train_tfidf, rf.X_valid_tfidf
 
             # Select sparse Matrix, the top 50 features, renew the matrix
-            rf.x_mix_train = rf.x_mix_train.tocsc()[:, indices]
-            rf.x_mix_valid = rf.x_mix_valid.tocsc()[:, indices]
+            rf.X_train_tfidf = rf.X_train_tfidf.tocsc()[:, indices]
+            rf.X_valid_tfidf = rf.X_valid_tfidf.tocsc()[:, indices]
 
             # build models with selected matrix
             print('New Model')
-            text_new, model_text_new = rf.rf_text(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid)
+            text_new, model_text_new = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid)
             result.append(text_new)
             model_result.append(model_text_new)
 
@@ -388,8 +388,8 @@ if __name__ == "__main__":
             # temp store the training and validation set
             temp_x_train, temp_x_valid = rf.x_arr2matrix_train, rf.x_arr2matrix_valid
             # Select sparse Matrix, the top 50 features, renew the matrix
-            rf.x_mix_train = rf.x_mix_train.tocsc()[:, indices]
-            rf.x_mix_valid = rf.x_mix_valid.tocsc()[:, indices]
+            rf.x_arr2matrix_train = rf.x_arr2matrix_train.tocsc()[:, indices]
+            rf.x_arr2matrix_valid = rf.x_arr2matrix_valid.tocsc()[:, indices]
 
             # build models with selected matrix
             print('New Model')
