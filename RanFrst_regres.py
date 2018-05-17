@@ -39,7 +39,7 @@ class RF_regression:
         self.X_train_tfidf, self.X_valid_tfidf, self.X_test_tfidf = self.text_sparse(self.X_train, self.X_valid, self.X_test, ngram_range)
 
         self.x_arr2matrix_train = np.array(self.X_train['lg_rt_features'].tolist())
-        self.x_arr2matrix_valid = np.array(X_valid['lg_rt_features'].tolist())
+        self.x_arr2matrix_valid = np.array(self.X_valid['lg_rt_features'].tolist())
         self.x_mix_train = hstack((self.x_arr2matrix_train, self.X_train_tfidf))
         self.x_mix_valid = hstack((self.x_arr2matrix_valid, self.X_valid_tfidf))
 
