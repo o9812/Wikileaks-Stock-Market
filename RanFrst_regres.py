@@ -20,11 +20,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# from sklearn.feature_extraction import DictVectorizer
-# >> > v = DictVectorizer(sparse=False)
-# >> > D = [{'foo': 1, 'bar': 2}, {'foo': 3, 'baz': 1}]
-# >> > X = v.fit_transform(D)
-
 
 class RF_regression:
     def __init__(self, n_estimators, file_path="./Final_merge/final_Single_australia", ngram_range=(1, 2)):
@@ -43,11 +38,6 @@ class RF_regression:
         self.X_train, self.y_train, self.X_valid, self.y_valid, self.X_test, self.y_test, self.size = self.loaddata(file_path)
 
         self.X_train_tfidf, self.X_valid_tfidf, self.X_test_tfidf = self.text_sparse(self.X_train, self.X_valid, self.X_test, ngram_range)
-
-        # v_train = DictVectorizer(sparse=False)
-        # v_valid = DictVectorizer(sparse=False)
-        # self.x_arr2matrix_train = v_train.fit_transform(self.X_train['lg_rt_features'])
-        # self.x_arr2matrix_valid = v_valid.fit_transform(self.X_valid['lg_rt_features'])
 
         self.x_arr2matrix_train = np.array(self.X_train['lg_rt_features'].tolist())
         self.x_arr2matrix_valid = np.array(self.X_valid['lg_rt_features'].tolist())
@@ -91,6 +81,7 @@ class RF_regression:
                 return float(y)
             except:
                 return None
+
         # clean the data and drop na
         austrilia['lg_rt_features'] = austrilia['lg_rt_features'].apply(lambda x: list2arry(x)).values
         austrilia['num_lable'] = austrilia['num_lable'].apply(lambda x: filter_y(x)).values
@@ -198,6 +189,7 @@ class RF_regression:
             median_absolute_error: string
             r2_text: string
         """
+
         # turn the data into matrix and feed to random forest for training data
         clf_price = RandomForestRegressor(n_estimators)
         clf_price.fit(self.x_arr2matrix_train, y_train['num_lable'])
@@ -287,18 +279,22 @@ def write_file(path, fileName, data, models, plt_feature_important):
         os.makedirs(path)
     for i, model in enumerate(models):
         pickle.dump(model, open('./' + path + '/model/' + fileName + str(i) + ".p", "wb"))
-
-    plt_feature_important.savefig('./' + path + '/model/' + fileName + "_feature importance")
-    plt_feature_important.close()
+    """
+    comment this part for draw pictures
+    """
+    # plt_feature_important.savefig('./' + path + '/model/' + fileName + "_feature importance")
+    # plt_feature_important.close()
 
 
 def draw(importances, indices, top_50_list):
     """
     Function to draw plot of feature importance
     @input:
-
+        importances : the features number
+        indices     : the indices of features
+        top_50_list : top 50 features
     @output:
-
+        plt: plt objective of feature importance
     """
     plt.figure(figsize=(20, 16))
     plt.title("Feature importances")
@@ -353,33 +349,73 @@ if __name__ == "__main__":
         # if the tag is -all or -text, train randomforest for text model
         if tree_type == '-text' or tree_type == '-all':
             only_text, model_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
-            result.append(only_text)
-            model_result.append(model_text)
+            # commet the following not to store intermediate result
+            # store the model
+            # result.append(only_text)
+            # model_result.append(model_text)
+
+            feature_importance = model_text.feature_importances_
+            # Find best 50 features
+            indices = np.argsort(feature_importance)[::-1][0:50]
+
+            # temp store the training and validation set
+            temp_x_train, temp_x_valid = rf.X_train_tfidf, rf.X_valid_tfidf
+
+            # Select sparse Matrix, the top 50 features, renew the matrix
+            rf.x_mix_train = rf.x_mix_train.tocsc()[:, indices]
+            rf.x_mix_valid = rf.x_mix_valid.tocsc()[:, indices]
+
+            # build models with selected matrix
+            print('New Model')
+            text_new, model_text_new = rf.rf_text(X_train, y_train, X_valid, y_valid)
+            result.append(text_new)
+            model_result.append(model_text_new)
+
+            # restore the matrix from train, valid
+            rf.X_train_tfidf, rf.X_valid_tfidf = temp_x_train, temp_x_valid
 
         # if the tag is -all or -price, train randomforest for price model
         if tree_type == '-price' or tree_type == '-all':
             only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
-            result.append(only_price)
-            model_result.append(model_price)
+            # commet the following not to store intermediate result
+            # store the model
+            # result.append(only_price)
+            # model_result.append(model_price)
+            feature_importance = model_price.feature_importances_
+            # Find best 50 features
+            indices = np.argsort(feature_importance)[::-1][0:5]
+
+            # temp store the training and validation set
+            temp_x_train, temp_x_valid = rf.x_arr2matrix_train, rf.x_arr2matrix_valid
+            # Select sparse Matrix, the top 50 features, renew the matrix
+            rf.x_mix_train = rf.x_mix_train.tocsc()[:, indices]
+            rf.x_mix_valid = rf.x_mix_valid.tocsc()[:, indices]
+
+            # build models with selected matrix
+            print('New Model')
+            price_new, model_price_new = rf.rf_price(X_train, y_train, X_valid, y_valid)
+            result.append(price_new)
+            model_result.append(model_price_new)
+
+            # restore the matrix from train, valid
+            rf.x_arr2matrix_train, rf.x_arr2matrix_valid = temp_x_train, temp_x_valid
 
         # if the tag is -all or -mix, train randomforest for mix model
         if tree_type == '-mix' or tree_type == '-all':
             mix_price_text, model_mix = rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
-            result.append(mix_price_text)
-            model_result.append(model_mix)
+
+            # store the model
+            # result.append(mix_price_text)
+            # model_result.append(model_mix)
+
             # get feature imporatnce
             feature_importance = model_mix.feature_importances_
             # Find best 50 features
             indices = np.argsort(feature_importance)[::-1][0:50]
 
-            # get the feature top 50 name
+            # temp store the training and validation set
+            temp_x_train, temp_x_valid = rf.x_mix_train, rf.x_mix_valid
 
-            feature_list = rf.x_mix_train.get_feature_names()
-            feature_list_50 = []
-            for index in indices[0:50]:
-                feature_list_50.append(feature_list[index])
-
-            plt_feature_important = draw(feature_importance, indices, feature_list_50)
             # Select sparse Matrix, the top 50 features, renew the matrix
             rf.x_mix_train = rf.x_mix_train.tocsc()[:, indices]
             rf.x_mix_valid = rf.x_mix_valid.tocsc()[:, indices]
@@ -389,8 +425,10 @@ if __name__ == "__main__":
             mix_price_text_new, model_mix_new = rf.rf_mix(X_train, y_train, X_valid, y_valid)
             result.append(mix_price_text_new)
             model_result.append(model_mix_new)
+            # restore the matrix from train, valid
+            rf.x_mix_train, rf.x_mix_valid = temp_x_train, temp_x_valid
 
         # record the size
         print('size is: ' + str(rf.size))
         result.append(str(rf.size))
-        write_file('output_' + output_filename, fileName, result, model_result, plt_feature_important)
+        write_file('output_' + output_filename, fileName, result, model_result)
