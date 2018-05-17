@@ -2,25 +2,57 @@
 
 - This project's objective is to measure how confidential information affects the financial market. We know that market efficiency is based on the assumption that all market participants have fair access to the market. More importantly, it includes any kind of information. However, people do possess confidential information in the real world. Most financial markets have prohibited any kind of inside trading. Because of the difficulties to access confidential data, detecting the influence of confidential information affect market is hard. 
 
-- Luckily, we now have [Public Library of US Diplomacy](https://wikileaks.org/plusd/about/) dataset. We scraped documents from 2000 to 2010. With the scrapped data, we built models to detect if we can predict the abnormal change of the exchange rate in different countries. The historical exchange rate is fetched from CRSP datasets and this dataset covers 21 countries, which are australia, brazil, canada, china, denmark, hong kong, india, japan, korea, malaysia, mexico, new zealand, norway, sweden, south africa, singapore, sri lanka, switzerland, taiwan, thailand, united kingdom and venezuela. 
+- Luckily, we now have [Public Library of US Diplomacy](https://wikileaks.org/plusd/about/) dataset. We scraped documents from 2000 to 2010. With the scrapped data, we built models to detect if we can predict the abnormal change of the exchange rate in different countries. The historical exchange rate is fetched from CRSP datasets and this dataset covers 21 countries, which are Australia, Brazil, Canada, China, Denmark, Hong Kong, India, Japan, Korea, Malaysia, Mexico, New Zealand, Norway, Sweden, South Africa, Singapore, Sri Lanka, Taiwan, Thailand, United Kingdom and Venezuela. 
 
 ## Data set
 
 We have two datasets: Public library of US diplomcy and the exchange rate dataset crapped from CRSP. 
-
 For the purpose of error analysis, we split data by country and year. You can access data through the links below. 
   
 - [country by country](https://drive.google.com/drive/folders/1uHIfkPc2b-b_3XDnRJn3NO2baRxnrXz5?usp=sharing)
+  - date:            the date of wikileaks cable
+  - content:         the content of wikileaks cable
+  - exchange rate:   the 15 days log return of exchange rate before time t 
+  - numerical label: log return of exchange rate at time t
+  - dummy label:     abnormal log return or not
 - [country by country - negative](https://drive.google.com/drive/folders/1wzG2AGAE3wy-v-GdwZlsixZoV6yVycot?usp=sharing)
+ONLY KEEP THE INSTANCE WITH NEGATIVE NUMERICAL LABEL
+  - date:            the date of wikileaks cable
+  - content:         the content of wikileaks cable
+  - exchange rate:   the 15 days log return of exchange rate before time t 
+  - numerical label: log return of exchange rate at time t
+  - dummy label:     abnormal log return or not
 
 #### We also include a joint table of all conuntries's infromation named as `final_All_countries`. 
 
 - [year by year](https://drive.google.com/drive/folders/1DMejBtKP9QGcnsybepXAuWAlqLqSIahR?usp=sharing)
+  - date:            the date of wikileaks cable
+  - content:         the content of wikileaks cable
+  - exchange rate:   the 15 days log return of exchange rate before time t 
+  - numerical label: log return of exchange rate at time t
+  - dummy label:     abnormal log return or not
 - [year by year - negative](https://drive.google.com/drive/folders/1l8YtosubkGm4T4Wbi2qnv3sFpFKK3ciy?usp=sharing)
+ONLY KEEP THE INSTANCE WITH NEGATIVE NUMERICAL LABEL
+  - date:            the date of wikileaks cable
+  - content:         the content of wikileaks cable
+  - exchange rate:   the 15 days log return of exchange rate before time t 
+  - numerical label: log return of exchange rate at time t
+  - dummy label:     abnormal log return or not
 
-And the following is all country and all year
+And the following is a joined table, cluding all countries and all year
 - [all by all](https://drive.google.com/drive/folders/1gJhyw0p9Ha6C4Yd2yq6P6YYSFU4QNlLD?usp=sharing)
+  - date:            the date of wikileaks cable
+  - content:         the content of wikileaks cable
+  - exchange rate:   the 15 days log return of exchange rate before time t 
+  - numerical label: log return of exchange rate at time t
+  - dummy label:     abnormal log return or not
 - [all by all - negative](https://drive.google.com/drive/folders/1oQkmha0nOgHo6tlEjD9SO1VKJ4f-HtAg?usp=sharing)
+ONLY KEEP THE INSTANCE WITH NEGATIVE NUMERICAL LABEL
+  - date:            the date of wikileaks cable
+  - content:         the content of wikileaks cable
+  - exchange rate:   the 15 days log return of exchange rate before time t 
+  - numerical label: log return of exchange rate at time t
+  - dummy label:     abnormal log return or not
 
 ## Build the regression and classfication model
 To build the Random Forest Regression Model: 
@@ -28,7 +60,7 @@ To build the Random Forest Regression Model:
 2. Run the python script as follwoing instructions:
 
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
-- Country by Country
+- For example, the folder of Country by Country dat
 
 ### run random forest regressor
 ```
