@@ -15,27 +15,53 @@ import os
 import glob
 import pickle
 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 
 class RF_regression:
-    def __init__(self, file_path="./Final_merge/final_Single_australia"):
-        # initial all data: train , validation and test set
+    def __init__(self, n_estimators, file_path="./Final_merge/final_Single_australia", ngram_range=(1, 2)):
+        """
+        initial the random forest class
+        @ input par:
+            n_estimators: the number of estimators
+            file_path   : the path for final data.
+                ex: ./Final_merge/final_Single_australia
+            ngram_range : the number of estimators
+
+        @ output:
+            dataset: initial all data, train , validation and test set
+        """
+        self.n_estimators = n_estimators
         self.X_train, self.y_train, self.X_valid, self.y_valid, self.X_test, self.y_test, self.size = self.loaddata(file_path)
 
-        self.X_train_tfidf, self.X_valid_tfidf, self.X_test_tfidf = self.text_sparse(self.X_train, self.X_valid, self.X_test, ngram_range=(1, 2))
-        self.x_arr2matrix_train = None
-        self.x_arr2matrix_valid = None
+        self.X_train_tfidf, self.X_valid_tfidf, self.X_test_tfidf = self.text_sparse(self.X_train, self.X_valid, self.X_test, ngram_range)
+
+        self.x_arr2matrix_train = np.array(self.X_train['lg_rt_features'].tolist())
+        self.x_arr2matrix_valid = np.array(X_valid['lg_rt_features'].tolist())
+        self.x_mix_train = hstack((self.x_arr2matrix_train, self.X_train_tfidf))
+        self.x_mix_valid = hstack((self.x_arr2matrix_valid, self.X_valid_tfidf))
 
     def loaddata(self, file_path):
-        '''
-        input: file path
-        output:
+        """
+        data preprocessing for SVM model
+        @ input:
+            file path.
+        @ output:
             return train, validation, test set.
-        '''
+        """
         # load data and drop na
         austrilia = pd.read_json(file_path)
-        # change the str list to array
 
+        # change the str list to array
         def list2arry(x):
+            """
+            @ input:
+                dataframe with special symbol.
+            @ output:
+                a clean dataframe, with type of np array.
+            """
             line = re.sub("[!@#$\n'']", '', x).replace("[", "").replace("]", "").strip().split(" ")
             try:
                 return np.asarray([float(i) for i in line if i != ''])
@@ -43,23 +69,31 @@ class RF_regression:
                 return None
 
         def filter_y(y):
+            """
+            @ input:
+                dataframe.
+            @ output:
+                if possible, let price data as float type.
+                if not, mark the exception as None and return.
+            """
             try:
                 return float(y)
             except:
                 return None
-        # drop the none
+        # clean the data and drop na
         austrilia['lg_rt_features'] = austrilia['lg_rt_features'].apply(lambda x: list2arry(x)).values
         austrilia['num_lable'] = austrilia['num_lable'].apply(lambda x: filter_y(x)).values
         austrilia = austrilia.dropna()
+        # store the size of data
         size = austrilia.shape
-
+        # create x features
         x_austrilia = austrilia[['date', 'Content', 'lg_rt_features']]
-        # x_austrilia['lg_rt_features'] = x_austrilia['lg_rt_features'].apply(lambda x: list2arry(x)).values
+        # create y lable
         y_austrilia = austrilia[['date', 'dummy_lable', 'num_lable']]
 
         # split data as train(0.8), validation(0.1) and test set(0.1)
-        X_train, X_valid, y_train, y_valid = train_test_split(x_austrilia, y_austrilia, test_size=0.2, random_state=42)
-        X_valid, X_test, y_valid, y_test = train_test_split(X_valid, y_valid, test_size=0.5, random_state=42)
+        X_train, X_valid, y_train, y_valid = train_test_split(x_austrilia, y_austrilia, test_size=0.2, random_state=44)
+        # X_valid, X_test, y_valid, y_test = train_test_split(X_valid, y_valid, test_size=0.5, random_state=44)
 
         return X_train, y_train, X_valid, y_valid, X_test, y_test, size
     # try new features
@@ -81,18 +115,19 @@ class RF_regression:
 
     def text_sparse(self, X_train, X_valid, X_test, ngram_range=(1, 2)):
         '''
-        input
-            X_train, X_valid
-        output:
-            X_train_tfidf, X_valid_tfidf
+        @ input
+            dataframe: X_train, X_valid or X_test
+            ngram_range: int of setting n-gram of text features
+        @ output:
+            X_train_tfidf: with vectorization TF-IDF, sparse matrix
         '''
         # fit the traing data for vector
         tfidf_vectorizer = TfidfVectorizer(binary=True, ngram_range=ngram_range)
         tfidf_vectorizer.fit(X_train["Content"])
-        
-        with open(fileName+'.pickle', 'wb') as handle:
-            pickle.dump(a, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        
+
+        # with open(fileName + '.pickle', 'wb') as handle:
+        #     pickle.dump(a, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
         # turn text to matrix
         X_train_tfidf = tfidf_vectorizer.transform(X_train["Content"])
         X_valid_tfidf = tfidf_vectorizer.transform(X_valid["Content"])
@@ -100,12 +135,30 @@ class RF_regression:
 
         return X_train_tfidf, X_valid_tfidf, X_test_tfidf
 
-    def rf_text(self, X_train_tfidf, y_train, X_valid_tfidf, y_valid, n_estimators=10):
+    def rf_text(self, X_train_tfidf, y_train, X_valid_tfidf, y_valid, n_estimators=self.n_estimators):
+        """
+        only works for text feature
+        @ input
+            X_train_tfidf : sparse matrix from train data
+            X_valid_tfidf: sparse matrix from valild data
+            y_train: label of train data, include dummy and numerical lable
+            y_valid: label of valid data, include dummy and numerical lable
+            n_estimators: number of trees
+        @ output:
+            see the sklearn metric page
+            http://scikit-learn.org/stable/modules/classes.html
+            mse: string
+            mae: string
+            median_absolute_error: string
+            r2_text: string
+        """
+        # Fit random forest
         clf_text = RandomForestRegressor(n_estimators)
         clf_text.fit(X_train_tfidf, y_train['num_lable'])
 
-        # calculate the mse
+        # predict the value
         y_predict_text = clf_text.predict(X_valid_tfidf)
+        # calculate the metrics
         mse_text = mean_squared_error(y_valid['num_lable'], y_predict_text)
         mae_text = mean_absolute_error(y_valid['num_lable'], y_predict_text)
         mdn_ae_text = median_absolute_error(y_valid['num_lable'], y_predict_text)
@@ -117,15 +170,31 @@ class RF_regression:
         print("r2_text: ", r2_text)
         return ["mse_text is: " + str(round(mse_text, 8)), "mae_text is: " + str(round(mse_text, 8)), "median_absolute_error: " + str(round(mdn_ae_text, 8)), "r2_text: " + str(round(r2_text, 8))], clf_text
 
-    def rf_price(self, X_train, y_train, X_valid, y_valid, n_estimators=10):
-        self.x_arr2matrix_train = np.array(X_train['lg_rt_features'].tolist())
-        clf_price = RandomForestRegressor(n_estimators=10)
+    def rf_price(self, X_train, y_train, X_valid, y_valid, n_estimators=self.n_estimators):
+        """
+        only works for price feature
+        @ input
+            X_train: train data
+            X_valid: valild data
+            y_train: label of train data, include dummy and numerical lable
+            y_valid: label of valid data, include dummy and numerical lable
+            n_estimators: number of trees
+        @ output:
+            see the sklearn metric page
+            http://scikit-learn.org/stable/modules/classes.html
+            mse: string
+            mae: string
+            median_absolute_error: string
+            r2_text: string
+        """
+        # turn the data into matrix and feed to random forest for training data
+        clf_price = RandomForestRegressor(n_estimators)
         clf_price.fit(self.x_arr2matrix_train, y_train['num_lable'])
 
-        # calculate the mse, let a column of arrays to matrix
-        self.x_arr2matrix_valid = np.array(X_valid['lg_rt_features'].tolist())
+        # predict vy the price feature
         y_predict_price = clf_price.predict(self.x_arr2matrix_valid)
 
+        # calculate the metrics
         mse_price = mean_squared_error(y_valid['num_lable'], y_predict_price)
         mae_price = mean_absolute_error(y_valid['num_lable'], y_predict_price)
         mdn_ae_price = median_absolute_error(y_valid['num_lable'], y_predict_price)
@@ -136,16 +205,33 @@ class RF_regression:
         print("r2_price: ", r2_price)
         return ["mse_price is: " + str(round(mse_price, 8)), "mae_price is: " + str(round(mae_price, 8)), "mdn_ae_price: " + str(round(mdn_ae_price, 8)), "r2_price: " + str(round(r2_price, 8))], clf_price
 
-    def rf_mix(self, X_train, y_train, X_valid, y_valid, n_estimators=10):
-        # mix sparse matrix(tf-idf) and numpy array (price)
-        x_mix_train = hstack((self.x_arr2matrix_train, self.X_train_tfidf))
+    def rf_mix(self, X_train, y_train, X_valid, y_valid, n_estimators=self.n_estimators):
+        """
+        only works for mix feature;
+        hstack two features, price and text
+        @ input
+            X_train: train data
+            X_valid: valild data
+            y_train: label of train data, include dummy and numerical lable
+            y_valid: label of valid data, include dummy and numerical lable
+            n_estimators: number of trees
+        @ output:
+            see the sklearn metric page
+            http://scikit-learn.org/stable/modules/classes.html
+            mse: string
+            mae: string
+            median_absolute_error: string
+            r2_text: string
+        """
+        # mix sparse numpy array (price) and matrix(tf-idf) for train data
+
         clf_mix = RandomForestRegressor(n_estimators)
-        clf_mix.fit(x_mix_train, y_train['num_lable'])
+        clf_mix.fit(self.x_mix_train, y_train['num_lable'])
 
-        # x_arr2matrix_valid = np.array(X_valid['lg_rt_features'].tolist())
-        x_mix_valid = hstack((self.x_arr2matrix_valid, self.X_valid_tfidf))
-        y_predict_mix = clf_mix.predict(x_mix_valid)
+        # mix sparse numpy array (price) and matrix(tf-idf) for valid data
+        y_predict_mix = clf_mix.predict(self.x_mix_valid)
 
+        # calculate the metrics
         mse_mix = mean_squared_error(y_valid['num_lable'], y_predict_mix)
         mae_mix = mean_absolute_error(y_valid['num_lable'], y_predict_mix)
         mdn_ae_mix = median_absolute_error(y_valid['num_lable'], y_predict_mix)
@@ -157,7 +243,14 @@ class RF_regression:
         return ["mse_mix is: " + str(round(mse_mix, 8)), "mae_mix is: " + str(round(mae_mix, 8)), "mdn_ae_mix: " + str(round(mdn_ae_mix, 8)), "r2_mix: " + str(round(r2_mix, 8))], clf_mix
 
 
-def write_file(path, fileName, data, models):
+def write_file(path, fileName, data, models, plt_feature_important):
+    """
+    @ input:
+        path        : open the file path to store file
+        fileName    : the name of file should be called
+        data        : store into file, here are four metircs
+        models      : store models, here are three models. text, price and mix
+    """
     if not os.path.exists(path + '/model'):
         '''
         if there is no output directory, creating one
@@ -166,7 +259,7 @@ def write_file(path, fileName, data, models):
 
     filePathNameWExt = './' + path + '/' + fileName
     with open(filePathNameWExt, 'w') as fp:
-        # data.to_json(fp)
+        # iterate the file
         fp.write("%s\n" % ('Country: ' + fileName))
         fp.write("\n")
         for thelist in data[:-1]:
@@ -175,7 +268,7 @@ def write_file(path, fileName, data, models):
             fp.write("\n")
         fp.write("%s\n" % data[-1])
     fp.close()
-
+    #  store the model
     if not os.path.exists(path):
         '''
         if there is no output directory, creating one
@@ -184,29 +277,54 @@ def write_file(path, fileName, data, models):
     for i, model in enumerate(models):
         pickle.dump(model, open('./' + path + '/model/' + fileName + str(i) + ".p", "wb"))
 
+    plt_feature_important.savefig('./' + path + '/model/' + fileName + "_feature importance")
+    plt_feature_important.close()
+
+
+def draw(importances, indices, top_50_list):
+    """
+    Function to draw plot of feature importance
+    @input:
+
+    @output:
+
+    """
+    plt.figure(figsize=(20, 16))
+    plt.title("Feature importances")
+    plt.bar(range(0, 50), importances[indices],
+            color="r", align="center", width=0.5)
+    plt.xticks(range(0, 50), top_50_list)
+    plt.tick_params(axis='both', which='minor', labelsize=1)
+    return plt
+
 
 if __name__ == "__main__":
     """
-    run this program by:
-        python RanFrst_regres_final.py 30 ./data_country/ country_30 -country
-        python RanFrst_regres_final.py 30 ./data_year/ year_30 -year
-    """
+    @input:
+        argv[1]: the number of estimators
+        argv[2]: input data path
+        argv[3]: the ouput file name
+        argv[4]: tree type
+    @output:
+        a folder: creating a "output folder with path, output_argv[3]"
+        including for metrics and trained data
 
-    n_estimators = int(sys.argv[1])
+    run this program by:
+        ex: python RanFrst_regres.py 30 ./data_country/ country_30 -mix
+
+    """
     # n_estimators = 1
-    # relative path: ./output_yr/
+    n_estimators = int(sys.argv[1])
+
+    # example, a relative path: ./output_yr/
     data_path = sys.argv[2]
+
     # output folder name
     output_filename = sys.argv[3]
-    # type_rf is '-year' or '-country'
-    type_rf = sys.argv[4]
+    # type_rf is '-price' or '-mix' or '-text' or '-all'
+    tree_type = sys.argv[4]
     type_rf_ = '*'
-    # type_rf_ = None
-    # if type_rf == '-year':
-    #     type_rf_ = '*'
-    # elif type_rf == '-country':
-    #     type_rf_ = '*'
-    # output_filename = 'coutry'
+
     print('RanFrst Regression with ', n_estimators, ' estimators')
     for file_path in glob.glob(data_path + type_rf_):
         print(file_path)
@@ -214,31 +332,56 @@ if __name__ == "__main__":
         fileName = file_path.split('_')[-1]
         if fileName == 'ng':
             fileName = file_path.split('_')[-2]
+        print('%s: ' % fileName)
 
-        print('%s: ' % type_rf, fileName)
-        # ngram_range = sys.argv[3]
-        rf = RF_regression(file_path)
-
+        rf = RF_regression(n_estimators, file_path)
+        # list to store result
+        result = []
+        model_result = []
         # do text, price and mix random forest: return list of values
-        #only_text, model_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
-        # pickle.dump( model_text, open( "save.p", "wb" ) )
+        # if the tag is -all or -text, train randomforest for text model
+        if tree_type == '-text' or tree_type == '-all':
+            only_text, model_text = rf.rf_text(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+            result.append(only_text)
+            model_result.append(model_text)
 
-        #only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
+        # if the tag is -all or -price, train randomforest for price model
+        if tree_type == '-price' or tree_type == '-all':
+            only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
+            result.append(only_price)
+            model_result.append(model_price)
         # pickle.dump( model_price, open( "save.p", "wb" ) )
-        mix_price_text, model_mix = rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
-        feature_importance=model_mix.feature_importances_
-        # Find best 50 features 
-        indices = np.argsort(importances)[::-1][0:50]
-        #Select sparse Matrix
-        rf.X_new_train_tfidf_=rf.X_train_tfidf.tocsc()[:, indices]
-        rf.X_new_valid_tfidf=rf.X_valid_tfidf.tocsc()[:, indices]
-        #new_clf=RandomForestRegressor(n_estimators)
-        #build models with selected matrix
-        
-        print ('New Model')
-        rf.rf_mix(X_train, y_train, X_valid, y_valid, n_estimators)
 
-        # pickle.dump( model_mix, open( "save.p", "wb" ) )
-        # fileName
+        # if the tag is -all or -mix, train randomforest for mix model
+        if tree_type == '-mix' or tree_type == '-all':
+            mix_price_text, model_mix = rf.rf_mix(rf.X_train_tfidf, rf.y_train, rf.X_valid_tfidf, rf.y_valid, n_estimators)
+            result.append(mix_price_text)
+            model_result.append(model_mix)
+            # get feature imporatnce
+            feature_importance = model_mix.feature_importances_
+            # Find best 50 features
+            indices = np.argsort(feature_importance)[::-1][0:50]
+
+            # get the feature top 50 name
+            feature_list = model_mix.x_mix_train.get_feature_names()
+            feature_list_50 = []
+                for index in indices[0:50]:
+                    feature_list_50.append(feature_list[index])
+
+            plt_feature_important = draw(feature_importance, indices, feature_list_50)
+            # Select sparse Matrix, the top 50 features, renew the matrix
+            rf.x_mix_train = rf.x_mix_train.tocsc()[:, indices]
+            rf.x_mix_valid = rf.x_mix_valid.tocsc()[:, indices]
+
+            # build models with selected matrix
+            print('New Model')
+            mix_price_text_new, model_mix_new = rf.rf_mix(X_train, y_train, X_valid, y_valid)
+            result.append(mix_price_text_new)
+            model_result.append(model_mix_new)
+
+        thelist[-1].savefig(figure_path + '/' + str(i))
+            thelist[-1].close()
+        # record the size
         print('size is: ' + str(rf.size))
-        write_file('output_' + output_filename, fileName, [only_text, only_price, mix_price_text, str(rf.size)], [model_text, model_price, model_mix])
+        result.append(str(rf.size))
+        write_file('output_' + output_filename, fileName, result, model_result, plt_feature_important)
