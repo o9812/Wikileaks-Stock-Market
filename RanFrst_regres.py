@@ -135,7 +135,7 @@ class RF_regression:
 
         return X_train_tfidf, X_valid_tfidf, X_test_tfidf
 
-    def rf_text(self, X_train_tfidf, y_train, X_valid_tfidf, y_valid, n_estimators=self.n_estimators):
+    def rf_text(self, X_train_tfidf, y_train, X_valid_tfidf, y_valid, n_estimators=10):
         """
         only works for text feature
         @ input
@@ -170,7 +170,7 @@ class RF_regression:
         print("r2_text: ", r2_text)
         return ["mse_text is: " + str(round(mse_text, 8)), "mae_text is: " + str(round(mse_text, 8)), "median_absolute_error: " + str(round(mdn_ae_text, 8)), "r2_text: " + str(round(r2_text, 8))], clf_text
 
-    def rf_price(self, X_train, y_train, X_valid, y_valid, n_estimators=self.n_estimators):
+    def rf_price(self, X_train, y_train, X_valid, y_valid, n_estimators=10):
         """
         only works for price feature
         @ input
@@ -205,7 +205,7 @@ class RF_regression:
         print("r2_price: ", r2_price)
         return ["mse_price is: " + str(round(mse_price, 8)), "mae_price is: " + str(round(mae_price, 8)), "mdn_ae_price: " + str(round(mdn_ae_price, 8)), "r2_price: " + str(round(r2_price, 8))], clf_price
 
-    def rf_mix(self, X_train, y_train, X_valid, y_valid, n_estimators=self.n_estimators):
+    def rf_mix(self, X_train, y_train, X_valid, y_valid, n_estimators=10):
         """
         only works for mix feature;
         hstack two features, price and text
@@ -350,7 +350,6 @@ if __name__ == "__main__":
             only_price, model_price = rf.rf_price(rf.X_train, rf.y_train, rf.X_valid, rf.y_valid, n_estimators)
             result.append(only_price)
             model_result.append(model_price)
-        # pickle.dump( model_price, open( "save.p", "wb" ) )
 
         # if the tag is -all or -mix, train randomforest for mix model
         if tree_type == '-mix' or tree_type == '-all':
