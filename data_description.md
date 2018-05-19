@@ -88,8 +88,7 @@
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
     
-    ***
-    ## Resutl
+   
 - `/data/wikileaks/crsp_data/CRSP_data/data_year_ng`
     > Only contain instance which has negative numerical label
     - Single year. A data frame with 5 column.
@@ -99,6 +98,8 @@
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
 
+    ***
+    ## Resutl
 - `/data/wikileaks/data/WorkData/wikileaks/output_result`
     > The result on the Azure server.
     - output_all_neg_30_a       :including all data, with only negative numerical label and only keep top 50 important features. 30 trees.
