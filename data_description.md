@@ -105,5 +105,7 @@
     - output_all_neg_30_a       :including all data, with only negative numerical label and only keep top 50 important features. 30 trees.
     - output_year_neg_30_a      :including all data split by year, with only negative numerical label and only keep top 50 important features. 30 trees. 
     - output_country_neg_30_a   :including all data split by country, with only negative numerical label and only keep top 50 important features. 30 trees. 
-
-
+    ***
+    ## models
+ -`/data/WorkData/wikileaks/Wikileaks-Stock-Market`
+     > store the file folder same as github
