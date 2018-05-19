@@ -99,7 +99,7 @@ THIS IS THE LIST OF FILE ON THE AZURE SERVER.
     - Content: the raw content of each cable.
 
     ***
-    ## Resutl
+    ## Result
 - `/data/wikileaks/data/WorkData/wikileaks/output_result`
     > The result on the Azure server.
     - output_all_neg_30_a       :including all data, with only negative numerical label and only keep top 50 important features. 30 trees.
