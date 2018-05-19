@@ -1,5 +1,5 @@
 # Data and Result Scription
-
+THIS IS THE LIST OF FILE ON THE AZURE SERVER.
 ## Raw data of wikileaks cable
 - `/data/wikileaks/Crawled_Data/Later_than_2000`		: wikileaks data before 2000s
 - `/data/wikileaks/Crawled_Data/data matching country`	: wikileaks match country with dummy variable 
@@ -108,4 +108,4 @@
     ***
     ## models
  -`/data/WorkData/wikileaks/Wikileaks-Stock-Market`
-     > store the file folder same as github
+     - store the file folder same as github
