@@ -1,4 +1,4 @@
-# Data Scription
+# Data and Result Scription
 
 ## Raw data of wikileaks cable
 - `/data/wikileaks/Crawled_Data/Later_than_2000`		: wikileaks data before 2000s
@@ -88,6 +88,8 @@
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
     
+    ***
+    ## Resutl
 - `/data/wikileaks/crsp_data/CRSP_data/data_year_ng`
     > Only contain instance which has negative numerical label
     - Single year. A data frame with 5 column.
