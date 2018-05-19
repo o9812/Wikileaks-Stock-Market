@@ -43,26 +43,26 @@
 
 
 ## Raw data of crsp data (on server)
-- `crsp_data/CRSP_data/Company_List`: 
+- `/data/wikileaks/crsp_data/CRSP_data/Company_List`: 
    -  include all companies listed on NYSE, AMEX and NASDAQ as of Mar 31 2018.
    - From the three exchange AMEX, NYSE and NADAQ
-- `crsp_data/CRSP_data/all_stock_abnormal_return`:
+- `/data/wikileaks/crsp_data/CRSP_data/all_stock_abnormal_return`:
     - abnormal return: This file includes abnormal returns of all stock list on NYSE, AMEX, NASDAQ.
     - Includes attributes of: PERMNO, return, excess return
     - Excess return: the difference of actual return and expected return.
     This is exactly of the abnormal return. 
 
 
-- `crsp_data/CRSP_data/allstock_list_crsp`: 
+- `/data/wikileaks/crsp_data/CRSP_data/allstock_list_crsp`: 
     - all stocks listed on NYSE, AMEX, NASDAQ. From 1980/01/01 to 2010/10/31
     - attributes: price, company name, ticker, premant code
 
-- `crsp_data/CRSP_data/exchange_rate`: 
+- `/data/wikileaks/crsp_data/CRSP_data/exchange_rate`: 
     - exchange rate from 1971/1/1 to 2010/12/31
     - note: from 2002, the euro appears
     Australia, Brazil, Canada, China, Denmark, Hong Kong, India, Japan, Korea, Malaysia, Mexico, New Zealand, Norway, Sweden, South Africa, Singapore, Sri Lanka, Switzerland, Taiwan, Thailand, United Kingdom, Venezuela, Austria, Belgium, Finland, France, Germany, Greece, Ireland, Italy, Netherlands, Portugal, Spain, Euro, ECU
 |
-- `crsp_data/CRSP_data/data_country`:
+- `/data/wikileaks/crsp_data/CRSP_data/data_country`:
     > `final_All_countries` contain all year and all countris
     - Single country. A data frame with 5 column.
     - date: date of the wikileaks
@@ -70,7 +70,7 @@
     - num_lable: numerical label, the exchange rate 
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
-- `crsp_data/CRSP_data/data_year`:
+- `/data/wikileaks/crsp_data/CRSP_data/data_year`:
     - Single year. A data frame with 5 column.
     - date: date of the wikileaks
     - lg_rt_features: 15 days exchange rate before the date
@@ -78,7 +78,7 @@
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
 
-- `crsp_data/CRSP_data/data_country_ng`
+- `/data/wikileaks/rsp_data/CRSP_data/data_country_ng`
     > Only contain instance which has negative numerical label. 
     > `final_All_countries_ng` contain all year and all countris
     - Single country. A data frame with 5 column.
@@ -88,7 +88,7 @@
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
     
-- `crsp_data/CRSP_data/data_year_ng`
+- `/data/wikileaks/crsp_data/CRSP_data/data_year_ng`
     > Only contain instance which has negative numerical label
     - Single year. A data frame with 5 column.
     - date: date of the wikileaks
@@ -96,5 +96,11 @@
     - num_lable: numerical label, the exchange rate 
     - dummy_lable: the dummy label, 1 if it is an abnormal return 0 if not.
     - Content: the raw content of each cable.
-    
+
+- `/data/wikileaks/data/WorkData/wikileaks/output_result`
+    > The result on the Azure server.
+    - output_all_neg_30_a       :including all data, with only negative numerical label and only keep top 50 important features. 30 trees.
+    - output_year_neg_30_a      :including all data split by year, with only negative numerical label and only keep top 50 important features. 30 trees. 
+    - output_country_neg_30_a   :including all data split by country, with only negative numerical label and only keep top 50 important features. 30 trees. 
+
 
