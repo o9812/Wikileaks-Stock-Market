@@ -175,32 +175,34 @@ It would generate 22 files named by the country name, ex: the input `final_Singl
 and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
 
 ## Result:
-[comment]: # We used NYU prince hpc to run experiment
+<!---
+ We used NYU prince hpc to run experiment
 ***
-[comment]: # - Random Forest Regression
-[comment]: # > #### year by year:
-[[comment]: #]: # > [Random forest regression w/ 10 estimators(https://drive.google.com/drive/folders/1yL5M089DjRimlrfyW15sZ9JEW4zo0tU6?usp=sharing)
+ - Random Forest Regression
+ > #### year by year:
+ > [Random forest regression w/ 10 estimators(https://drive.google.com/drive/folders/1yL5M089DjRimlrfyW15sZ9JEW4zo0tU6?usp=sharing)
 ***
 - Random Forest Classification
 > #### year by year:
 > [Random forest classify w/ 10 estimators](https://drive.google.com/drive/folders/1w7o3YCzaje1xn_P7dzdQ1ZzVp2GkbLDm?usp=sharing)
 > #### country by country:
-> [Random forest classify w/ 10 estimators](https://drive.google.com/drive/folders/1jB1Bjm2rpqIjy0ehX5ECw25Fo3fza3Ew?usp=sharing)
+> [Random forest classify w/ 10 estimators](https://drive.google.com/drive/folders/1jB1Bjm2rpqIjy0ehX5ECw25Fo3fza3Ew?usp=sharing) --->
 
-# try the negative one
+<!--- # try the negative one
 ### All countries and years
 >[Random forest classify w/ 100 estimators with negative](https://drive.google.com/drive/u/1/folders/1phB7BHdyNfNN0E5x-4CTvkUw-CytBimA)
 ### All years
 >[Random forest classify w/ 100 estimators with negative](https://drive.google.com/drive/folders/1vjVjpDtPU8BEdJPUBRAFgv1DeNNan6_U?usp=sharing)
 ### All countries
 >[Random forest classify w/ 100 estimators with negative](https://drive.google.com/open?id=16SVbkRaDNkB7UcYyJ1x920OHp_2xaSEV)
-
+--->
+<!--- 
 ***
 #### Trained Model with 30 trees
 >[all_year_neg_30](https://drive.google.com/drive/folders/17QhXMFntKTdx8WR8ZkHed-f5JtDo_dmA?usp=sharing)
-
+<!---
 >[all_country_neg_30](https://drive.google.com/drive/folders/1g4DOpf14gy-ApoxJ3juAj5NKFp-iaNwG?usp=sharing)
-
+---> 
 ***
 ***
 #### Trained Model and Results with 30 trees after feature selection
