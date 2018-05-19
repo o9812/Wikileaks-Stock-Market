@@ -77,25 +77,19 @@ Here, the pararmeters:
 > - `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
 > - `-country`: let the model know it is searching what kind of data (country level or year)
 
-#### if user want to see the example via jupyter notebook version, can see the following two script
-All_Countries_Neg_AUC_May17th.ipynb	
-> 
-Feature_Importance_All_Columns.ipynb
-> Show the example of finding feature importance
-
 - Year by Year
 ### run regression
 ```
-python RanFrst_regres.py 10 ./data_year/ year_10 -all
+python RanFrst_regres.py 10 ./data_year/ year_10 -year
 ```
 ### run calssify
 ```
-python RanFrst_classfy.py 10 ./data_year/ year_10 -all
+python RanFrst_classfy.py 10 ./data_year/ year_10 -year
 ```
 > - `10`: the number of estimators in random forest model
 > - `./data_year/`: input data path, supposed data is stored under `./data_year/`
 > - `year_10`: output data path, it would automaticall create a directory called `./output_year_10/`
-> - `-all`: let the model know which feature function should be used. `-all` means using all kind of features
+> - `-year`: let the model know it is searching what kind of data (country level or year)
 
 ## Result - regression
 `RanFrst_regres.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. 
@@ -206,3 +200,12 @@ We used NYU prince hpc to run experiment
 >[all_year_neg_30](https://drive.google.com/drive/folders/17QhXMFntKTdx8WR8ZkHed-f5JtDo_dmA?usp=sharing)
 
 >[all_country_neg_30](https://drive.google.com/drive/folders/1g4DOpf14gy-ApoxJ3juAj5NKFp-iaNwG?usp=sharing)
+
+***
+***
+#### Trained Model and Results with 30 trees after feature selection
+>[all_year_neg_30 after feature selection](https://drive.google.com/open?id=1UyVOKKawiKdgQTMcjtchJ0O30TesJGL7)
+
+>[all_country_neg_30 after feature selection](https://drive.google.com/open?id=1RUnsvHBvvJcPUxUMFeLgNKryfIIAklCO)
+
+>[all country and year neg 30 after feature selection](https://drive.google.com/open?id=1uj-BHVLJrC3YrZ74DzAghyU3KfBIGzsv)
