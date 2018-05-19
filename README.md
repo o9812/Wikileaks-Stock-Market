@@ -205,9 +205,11 @@ and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
 ---> 
 ***
 #### Trained Model and Results with 30 trees after feature selection
- ##### Data Sliced by Year as training and test set, using top 50 important features in random forest regression to predict negative returns of exchange rate over time 
->[all_year_neg_30 after feature selection](https://drive.google.com/open?id=1UyVOKKawiKdgQTMcjtchJ0O30TesJGL7)
+> Data Sliced by Year as training and test sets, using top 50 important features in random forest regression to predict negative returns of exchange rate over time. Output: 
+[all_year_neg_30 after feature selection](https://drive.google.com/open?id=1UyVOKKawiKdgQTMcjtchJ0O30TesJGL7)
 
->[all_country_neg_30 after feature selection](https://drive.google.com/open?id=1RUnsvHBvvJcPUxUMFeLgNKryfIIAklCO)
+> Data Sliced by Country as training and test sets, using top 50 important features in random forest regression to predict negative returns of exchange rate over time. Output: 
+[all_country_neg_30 after feature selection](https://drive.google.com/open?id=1RUnsvHBvvJcPUxUMFeLgNKryfIIAklCO)
 
->[all country and year neg 30 after feature selection](https://drive.google.com/open?id=1uj-BHVLJrC3YrZ74DzAghyU3KfBIGzsv)
+> Full dataset as training and test sets, using top 50 important features in random forest regression to predict negative returns of exchange rate over time. Output:  
+[Full dataset neg 30 after feature selection](https://drive.google.com/open?id=1uj-BHVLJrC3YrZ74DzAghyU3KfBIGzsv)
