@@ -59,42 +59,40 @@ To build the Random Forest Regression Model:
 1. Change working directory to the directory of `RanFrst_regres.py`. 
 2. Run the python script as follwoing instructions:
 
-## if user is interested in classifier function in juypter notebook, we have the following two examples
-`All_Countries_Neg_AUC_May17th.ipynb`	: Do the classification and AUC plot
-`Feature_Importance_All_Columns.ipynb`: finding out the feature importance 
+### if user is interested in classifier function in juypter notebook, we have the following two examples
+- `All_Countries_Neg_AUC_May17th.ipynb`	: Do the classification and AUC plot
+- `Feature_Importance_All_Columns.ipynb`: finding out the feature importance 
 
 
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
-- For example, the folder of Country by Country dat
+- For example, the folder of Country by Country and Year by Year 
 
-### run random forest regressor
-```
-python RanFrst_regres.py 10 ./data_country/ country_10 -country
-```
-
-### run random forest classifier
+### run random forest classifier 
 ```
 python RanFrst_classfy.py 10 ./data_country/ country_10 -country
+```
+```
+python RanFrst_regres.py 10 ./data_year/ country_10 -year
 ```
 Here, the pararmeters:
 > - `10`: the number of estimators in random forest model
 > - `./data_country/`: input data path, supposed data is stored under `./data_country/`
 > - `country_10`: output data path, it would automaticall create a directory called `./output_country_10/`
 > - `-country`: let the model know it is searching what kind of data (country level or year)
+> - `-year`: let the model know it is searching what kind of data (country level or year)
 
 - Year by Year
-### run regression
+### run random forest classifier regression
 ```
-python RanFrst_regres.py 10 ./data_year/ year_10 -year
+python RanFrst_regres.py 10 ./data_country/ year_10 -all
 ```
-### run calssify
 ```
-python RanFrst_classfy.py 10 ./data_year/ year_10 -year
+python RanFrst_classfy.py 10 ./data_year/ year_10 -all
 ```
 > - `10`: the number of estimators in random forest model
 > - `./data_year/`: input data path, supposed data is stored under `./data_year/`
 > - `year_10`: output data path, it would automaticall create a directory called `./output_year_10/`
-> - `-year`: let the model know it is searching what kind of data (country level or year)
+> - `-all`: means run all feature functions with text, exchange rate and mix features. `-text`, `-price` and `-mix` only run the functions. This can help speed up the time computation.
 
 ## Result - regression
 `RanFrst_regres.py` would automatically generate output under the user defined output directory, ex `./output_country_10/` or `./output_year_10/`. 
