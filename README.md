@@ -59,6 +59,11 @@ To build the Random Forest Regression Model:
 1. Change working directory to the directory of `RanFrst_regres.py`. 
 2. Run the python script as follwoing instructions:
 
+## if user is interested in classifier function in juypter notebook, we have the following two examples
+`All_Countries_Neg_AUC_May17th.ipynb`	: Do the classification and AUC plot
+`Feature_Importance_All_Columns.ipynb`: finding out the feature importance 
+
+
 #### searching the file name was written in hard code. So, if you want to rename the data, you would need to modify the main function.
 - For example, the folder of Country by Country dat
 
