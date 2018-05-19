@@ -108,5 +108,4 @@ THIS IS THE LIST OF FILE ON THE AZURE SERVER.
     ***
     ## models
  -`/data/WorkData/wikileaks/Wikileaks-Stock-Market`
-    
     - store the file folder same as github
