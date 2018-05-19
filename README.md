@@ -211,7 +211,7 @@ and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
 
 - Data Sliced by Year as training and test sets, using top 50 important features in random forest regression to predict negative returns of exchange rate over time. 
 > [all_year_neg_30 after feature selection](https://drive.google.com/open?id=1UyVOKKawiKdgQTMcjtchJ0O30TesJGL7)
-
+>
 > The folder contains: 
 >  * model output by each years, ex: 2000
 > * the folder model contains: 
@@ -220,7 +220,7 @@ and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
 
 - Data Sliced by Country as training and test sets, using top 50 important features in random forest regression to predict negative returns of exchange rate over time. 
 > [all_country_neg_30 after feature selection](https://drive.google.com/open?id=1RUnsvHBvvJcPUxUMFeLgNKryfIIAklCO)
-
+>
 > The folder contains: 
 > * model output by each country, ex: sweden
 > * the folder model contains: 
@@ -228,7 +228,7 @@ and three figures showing roc_aucc under `./output_country_10/mexico_figure/`
 
 - Full dataset as training and test sets, using top 50 important features in random forest regression to predict negative returns of exchange rate over time. 
 > [Full dataset neg 30 after feature selection](https://drive.google.com/open?id=1uj-BHVLJrC3YrZ74DzAghyU3KfBIGzsv)
-
+>
 > The folder contains: 
 >  * model output by full dataset, ex: countries
 >  * the folder model contains: 
