@@ -107,5 +107,5 @@ THIS IS THE LIST OF FILE ON THE AZURE SERVER.
     - output_country_neg_30_a   :including all data split by country, with only negative numerical label and only keep top 50 important features. 30 trees. 
     ***
     ## models
- -`/data/WorkData/wikileaks/Wikileaks-Stock-Market`
-    > store the file folder same as github
+ - `/data/WorkData/wikileaks/Wikileaks-Stock-Market`
+    - store the file folder same as github
